@@ -1,0 +1,290 @@
+Year,Month,States Affected and Category by States,Category,Name,"Central Pressure","Max Wind"
+1851,Jun,TX 1,1,-,974,80
+1851,Aug,FL 3; GA 1,3,"Great Middle Florida",955,100
+1852,Aug,AL 3; MS 3; LA 2; FL 2,3,"Great Mobile",961,100
+1852,Sep,FL 1,1,-,982,70
+1852,Oct,FL 2; GA 1,2,"Middle Florida",965,90
+1853,Oct,GA 1,1,-,965,70
+1854,Jun,TX 1,1,-,982,70
+1854,Sep,GA 3; SC 2; FL 1,3,"Great Carolina",950,100
+1854,Sep,TX 2,2,"Matagorda",965,90
+1855,Sep,LA 3; MS 3,3,"Middle Gulf Shore",945,110
+1856,Aug,LA 4,4,"Last Island",934,130
+1856,Aug,FL 2; AL 1; GA 1,2,"Southeastern States",965,90
+1857,Sep,NC 2,2,-,961,90
+1858,Sep,NY 1; CT 1; RI 1; MA 1,1,"New England",976,80
+1859,Sep,AL 1; FL 1,1,-,982,70
+1859,Oct,FL 1,1,-,974,80
+1860,Aug,LA 3; MS 3; AL 2,3,-,945,110
+1860,Sep,LA 2; MS 2; AL 1,2,-,965,90
+1860,Oct,LA 2,2,-,965,90
+1861,Aug,FL 1,1,"Key West",978,70
+1861,Sep,NC 1,1,"Equinoctial",985,70
+1861,Nov,NC 1,1,"Expedition",985,70
+1865,Sep,LA 2; TX 1,2,"Sabine River",965,90
+1865,Oct,FL 2,2,-,969,90
+1866,Jul,TX 2,2,-,965,90
+1867,Jun,SC 1,1,-,985,70
+1867,Oct,LA 2; TX 1; FL 1,2,"Galveston",965,90
+1869,Aug,ME 2; MA 1,2,"Lower Texas Coast",965,90
+1869,Sep,LA 1,1,-,982,70
+1869,Sep,RI 3; MA 3; NY 1; CT 1,3,"Eastern New England",963,100
+1869,Oct,ME 2; MA 1,2,"Saxby's Gale",965,90
+1870,Jul,AL 1,1,"Mobile",982,70
+1870,Oct,FL 1,1,"Twin Key West (I)",970,70
+1870,Oct,FL 1,1,"Twin Key West (II)",977,80
+1871,Aug,FL 3,3,-,955,100
+1871,Aug,FL 2,2,-,965,90
+1871,Sep,FL 1,1,-,982,70
+1873,Sep,FL 1,1,-,982,70
+1873,Oct,FL 3,3,-,959,100
+1874,Sep,FL 1; NC 1,1,-,981,80
+1875,Sep,TX 3,3,-,955,100
+1876,Sep,NC 1; VA 1,1,-,980,80
+1876,Oct,FL 2,2,-,973,90
+1877,Sep,LA 1; FL 1,1,-,982,70
+1877,Oct,FL 3; GA 1,3,-,955,100
+1878,Sep,FL 2; SC 1; GA 1,2,-,970,90
+1878,Oct,"NC 2; VA 1; MD 1; DE 1; NJ 1; PA 1",2,-,963,90
+1879,Aug,NC 3; VA 2; MA 1,3,-,971,100
+1879,Aug,TX 2; LA 2,2,-,964,90
+1879,Sep,LA 3,3,-,945,110
+1880,Aug,TX 3,3,-,931,110
+1880,Aug,FL 2,2,-,972,90
+1880,Sep,NC 1,1,-,987,70
+1880,Oct,FL 1,1,-,982,70
+1881,Aug,GA 2; SC 1,2,-,970,90
+1881,Sep,NC 2,2,-,975,90
+1882,Sep,FL 3; AL 1,3,-,949,110
+1882,Oct,FL 1,1,-,985,70
+1883,Sep,NC 2; SC 1,2,-,965,90
+1885,Aug,SC 2; NC 1; GA 1; FL 1,2,-,970,90
+1886,Jun,TX 2; LA 2,2,-,970,85
+1886,Jun,FL 2; GA 1,2,-,970,85
+1886,Jun,FL 2; GA 1,2,-,970,85
+1886,Jul,FL 1,1,-,982,70
+1886,Aug,TX 4,4,"Indianola",925,130
+1886,Sep,TX 1,1,-,973,80
+1886,Oct,LA 3; TX 2,3,-,950,105
+1887,Jul,FL 1; AL 1,1,-,978,75
+1887,Aug,NC 1,1,-,946,65
+1887,Sep,TX 1,1,-,973,75
+1887,Oct,LA 1,1,-,978,75
+1888,Jun,TX 1,1,-,982,70
+1888,Aug,FL 3; LA 2; MS 1,3,-,945,110
+1888,Oct,FL 2,2,-,970,95
+1889,Sep,LA 1,1,-,982,70
+1891,Jul,TX 1,1,-,974,80
+1891,Aug,FL 1,1,-,985,70
+1893,Aug,NY 1; CT 1,1,"Midnight Storm",986,75
+1893,Aug,GA 3; SC 3; NC 1; FL 1,3,"Sea Islands",954,100
+1893,Sep,LA 2,2,-,970,85
+1893,Oct,LA 4; MS 2; AL 2,4,"Chenier Caminanda",948,115
+1893,Oct,SC 3; NC 2; VA 1,3,-,955,105
+1894,Sep,FL 2; SC 1; VA 1,2,-,975,90
+1894,Oct,FL 3; GA 1; NY 1; RI 1; CT 1,3,-,950,105
+1895,Aug,TX 1,1,-,963,65
+1896,Jul,FL 2,2,-,970,85
+1896,Sep,RI 1; MA 1,1,-,985,70
+1896,Sep,"FL 3; GA 2; SC 1; NC 1; VA 1",3,-,960,110
+1897,Sep,LA 1; TX 1,1,-,978,75
+1898,Aug,FL 1,1,-,982,70
+1898,Aug,GA 1; SC 1,1,-,980,75
+1898,Oct,GA 4; FL 2,4,-,938,115
+1899,Aug,FL 2,2,-,979,85
+1899,Aug,NC 3,3,-,945,105
+1899,Oct,NC 2; SC 2,2,-,955,95
+1900,Sep,TX 4,4,"Galveston",936,120
+1901,Jul,NC 1,1,-,983,70
+1901,Aug,LA 1; MS 1; AL 1,1,-,973,75
+1903,Sep,FL 1,1,-,974,80
+1903,Sep,NJ 1; DE 1,1,-,990,70
+1904,Sep,SC 1,1,-,985,70
+1904,Oct,FL 1,1,-,985,70
+1906,Jun,FL 1,1,-,979,75
+1906,Sep,SC 1; NC 1,1,-,977,80
+1906,Sep,MS 2; AL 2; FL 2; LA 1,2,-,958,95
+1906,Oct,FL 3,3,-,953,105
+1908,Jul,NC 1,1,-,985,70
+1909,Jun,TX 2,2,-,972,85
+1909,Jul,TX 3,3,"Velasco",959,100
+1909,Aug,TX 1,1,-,955,65
+1909,Sep,LA 3; MS 2,3,"Grand Isle",952,105
+1909,Oct,FL 3,3,-,957,100
+1910,Sep,TX 2,2,-,965,90
+1910,Oct,FL 2,2,-,955,95
+1911,Aug,FL 1; AL1,1,-,982,70
+1911,Aug,SC 2; GA 1,2,-,972,85
+1912,Sep,AL 1; FL 1,1,-,986,65
+1912,Oct,TX 2,2,-,970,85
+1913,Jun,TX 1,1,-,986,65
+1913,Sep,NC 1,1,-,976,75
+1913,Oct,SC 1,1,-,989,65
+1915,Aug,FL 1,1,-,990,65
+1915,Aug,TX 4 C1; LA 1,4,"Galveston",940,115
+1915,Sep,FL 1,1,-,982,80
+1915,Sep,LA 3; MS 2,3,"New Orleans",944,110
+1916,Jul,MS 3; AL 2; FL 2,3,-,950,105
+1916,Jul,SC 2,2,-,960,95
+1916,Aug,TX 4,4,-,932,115
+1916,Oct,AL 2; FL 2,2,-,970,95
+1917,Sep,FL 3; LA 2; AL 1,3,-,949,100
+1918,Aug,LA 3; TX 1,3,-,955,105
+1918,Aug,NC 1,1,-,988,65
+1919,Sep,FL 4; TX 3,4,-,927,130
+1920,Sep,LA 2,2,-,975,85
+1921,Jun,TX 1,1,-,980,80
+1921,Oct,FL 3,3,"Tampa Bay",958,100
+1923,Oct,LA 1; MS 1,1,-,983,70
+1924,Aug,NC 1; MA 1,1,,963,65
+1924,Sep,FL 1,1,-,980,75
+1924,Oct,FL 1,1,-,975,80
+1926,Jul,FL 2,2,-,967,90
+1926,Aug,LA 3,3,-,955,100
+1926,Sep,FL 4; AL 3; MS 1,4,"Great Miami",930,125
+1926,Oct,FL 1,1,-,949,75
+1928,Aug,FL 2,2,-,977,85
+1928,Sep,FL 4; GA 1; SC 1,4,"Lake Okeechobee",929,125
+1929,Jun,TX 1,1,-,982,80
+1929,Sp-Oc,FL 3,3,-,948,100
+1932,Aug,TX 4,4,"Freeport",935,130
+1932,Sep,AL 1; FL 1,1,-,979,75
+1933,Jl-Au,TX 1; FL 1,1,-,975,80
+1933,Aug,NC 1; VA 1; MD 1,1,-,963,80
+1933,Sep,TX 3,3,-,940,110
+1933,Sep,FL 3,3,-,948,110
+1933,Sep,NC 2; VA 1,2,-,952,85
+1934,Jun,LA 2,2,-,966,85
+1934,Jul,TX 1,1,-,979,75
+1934,Sep,NC 1; NJ 1; NY 1,1,-,975,65
+1935,Sep,FL 5; GA 1,5,"Labor Day",892,160
+1935,Nov,FL 2,2,-,965,85
+1936,Jun,TX 1,1,-,987,70
+1936,Jul,FL 2; AL1,2,-,964,90
+1936,Sep,NC 1; VA 1,1,-,964,75
+1938,Aug,LA 1,1,-,995,65
+1938,Sep,NY 3; CT 3; RI 3; MA 2,3,"Great New England",941,105
+1939,Aug,FL 1,1,-,985,65
+1940,Aug,TX 2; LA 2,2,-,972,85
+1940,Aug,SC 2; GA 1,2,-,972,85
+1941,Sep,TX 3,3,-,942,110
+1941,Oct,FL 2,2,-,980,85
+1942,Aug,TX 1,1,-,992,65
+1942,Aug,TX 3,3,-,950,100
+1943,Jul,TX 2,2,-,967,90
+1944,Aug,NC 1,1,-,985,70
+1944,Sep,"NC 2; VA 2; NY 2; CT 1; RI 2; MA 1; NJ 1",2,"Great Atlantic",954,90
+1944,Oct,FL 3,3,-,949,105
+1945,Jun,FL 1,1,-,985,70
+1945,Aug,TX 2,3,-,963,100
+1945,Sep,FL 4,4,-,949,115
+1946,Oct,FL 2,1,-,980,75
+1947,Aug,TX 1,1,-,984,70
+1947,Sep,FL 4; LA 2; MS 2,4,-,943,115
+1947,Oct,GA 2; SC 2; FL 1,2,-,965,90
+1948,Sep,LA 1,1,-,983,70
+1948,Sep,FL 4,4,-,940,115
+1948,Oct,FL 2,2,-,963,90
+1949,Aug,NC 1,1,-,977,70
+1949,Aug,FL 4; GA 1,4,-,954,115
+1949,Oct,TX 2,2,-,965,95
+1950,Aug,AL 1; FL 1,1,Baker,979,75
+1950,Sep,FL 3,3,Easy,960,105
+1950,Oct,FL 4,4,King,955,115
+1952,Aug,SC 2,2,Able,980,85
+1953,Aug,NC 1,1,Barbara,975,80
+1953,Sep,FL 1,1,Florence,975,80
+1953,Oct,FL 1,1,Hazel,980,75
+1954,Aug,NY 3; CT 3; RI 3; MA 2; NC 1,3,Carol,955,100
+1954,Sep,MA 2; NC 1; NY 1; RI 1,2,Edna,950,95
+1954,Oct,SC 4; NC 4,4,Hazel,938,115
+1955,Aug,NC 2; VA 1,2,Connie,962,85
+1955,Sep,NC 2,2,Ione,955,90
+1956,Sep,LA 1; FL 1,1,Flossy,974,75
+1957,Jun,LA 3; TX 2,3,Audrey,946,110
+1958,Sep,NC 3,3,Helene,938,110
+1959,Jul,SC 1,1,Cindy,995,65
+1959,Jul,TX 1,1,Debra,980,75
+1959,Sep,SC 4,4,Gracie,951,115
+1960,Sep,FL 4; NC 2; VA 1; NY 2; CT 1; RI 1; MA 1,4,Donna,930,125
+1960,Sep,LA 1; MS 1,1,Ethel,980,980
+1961,Sep,TX 4,4,Carla,931,-
+1963,Sep,TX 1,1,Cindy,996,-
+1964,Aug,FL 2,2,Cleo,968,-
+1964,Sep,FL 2,2,Dora,966,-
+1964,Oct,LA 3,3,Hilda,950,-
+1964,Oct,FL 2,2,Isbell,974,-
+1965,Sep,FL 3; LA 3,3,Betsy,948,-
+1966,Jun,FL 2,2,Alma,982,-
+1966,Oct,FL 1,1,Inez,983,-
+1967,Sep,TX 3,3,Beulah,950,-
+1968,Oct,FL 2,2,Gladys,977,-
+1969,Aug,LA 5; MS 5,5,Camille,909,-
+1969,Sep,ME 1,1,Gerda,980,-
+1970,Aug,TX 3,3,Celia,945,-
+1971,Sep,LA 2,2,Edith,978,-
+1971,Sep,TX 1,1,Fern,979,-
+1971,Sep,NC 1,1,Ginger,995,-
+1972,Jun,FL 1; NY 1; CT 1,1,Agnes,980,-
+1974,Sep,LA 3,3,Carmen,952,-
+1975,Sep,FL 3; AL1,3,Eloise,955,-
+1976,Aug,NY 1,1,Belle,980,-
+1977,Sep,LA 1,1,Babe,995,-
+1979,Jul,LA 1,1,Bob,986,-
+1979,Sep,FL 2; GA 2; SC 2,2,David,970,-
+1979,Sep,AL 3; MS 3,3,Frederic,946,-
+1980,Aug,TX 3,3,Allen,945,100
+1983,Aug,TX 3,3,Alicia,962,100
+1984,Sep,NC 2,2,Diana,949,95
+1985,Jul,SC 1,1,Bob,1003,65
+1985,Aug,LA 1,1,Danny,987,80
+1985,Sep,AL 3; MS 3; FL 3,3,Elena,959,100
+1985,Sep,NC 3; NY 3; CT 2; NH 2; ME 1,3,Gloria,942,90
+1985,Oct,LA 1,1,Juan,971,75
+1985,Nov,FL 2; GA 1,2,Kate,967,85
+1986,Jun,TX 1,1,Bonnie,990,75
+1986,Aug,NC 1,1,Charley,990,65
+1987,Oct,FL 1,1,Floyd,993,65
+1988,Sep,LA 1,1,Florence,984,70
+1989,Aug,TX 1,1,Chantal,986,70
+1989,Sep,SC 4; NC 1,4,Hugo,934,120
+1989,Oct,TX 1,1,Jerry,983,75
+1991,Aug,RI 2; MA 2; NY 2; CT 2,2,Bob,962,90
+1992,Aug,FL 5; LA 3,5,Andrew,922,145
+1993,Aug,NC 3,3,Emily,961,100
+1995,Aug,FL 2,2,Erin,973,85
+1995,Oct,FL 3; AL 1,3,Opal,942,100
+1996,Jul,NC 2,2,Bertha,974,90
+1996,Sep,NC 3,3,Fran,954,100
+1997,Jul,LA 1; AL 1,1,Danny,984,70
+1998,Aug,NC 2,2,Bonnie,964,95
+1998,Sep,FL 1,1,Earl,987,70
+1998,Sep,FL 2; MS 2,2,Georges,964,90
+1999,Aug,TX 3,3,Bret,951,100
+1999,Sep,NC 2,2,Floyd,956,90
+1999,Oct,FL 1; NC 2,2,Irene,964,95
+2002,Oct,LA 1,1,Lili,963,80
+2003,Jul,TX 1,1,Claudette,979,80
+2003,Sep,NC 2; VA 1,2,Isabel,957,90
+2004,Aug,NC 1,1,Alex,972,70
+2004,Aug,FL 4; SC 1; NC 1,4,Charley,941,130
+2004,Aug,SC 1,1,Gaston,985,65
+2004,Sep,FL 2,2,Frances,960,90
+2004,Sep,AL 3; FL 3,3,Ivan,946,105
+2004,Sep,FL 3,3,Jeanne,950,105
+2005,Jul,LA 1,1,Cindy,991,65
+2005,Jul,FL 3; AL 1,3,Dennis,946,105
+2005,Aug,FL 1; LA 3; MS 3; AL 1,3,Katrina,920,110
+2005,Sep,NC 1,1,Ophelia,982,65
+2005,Sep,FL 1; LA 3; TX 2,3,Rita,937,100
+2005,Oct,FL 3,3,Wilma,950,105
+2007,Sep,TX 1; LA 1,1,Humberto,985,80
+2008,Jul,TX 1,1,Dolly,967,75
+2008,Sep,LA 2,2,Gustav,954,90
+2008,Sep,TX 2; LA 1,2,Ike,950,95
+2011,Aug,NC 1,1,Irene,952,75
+2012,Aug,LA 1,1,Isaac,966,70
+2012,Oct,NY 1,1,Sandy,942,65
+2014,Jul,NC 2,2,Arthur,973,85
+2016,Sep,FL 1,1,Hermine,981,70
+2016,Oct,FL 2; GA 1; SC 1; NC 1,2,Matthew,963,85

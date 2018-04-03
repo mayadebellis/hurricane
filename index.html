@@ -4,11 +4,14 @@
 <head>
 <title>Hurricane Viz</title>
   <script lang="javascript" src="js/jquery-3.1.0.min.js"></script>
-  <script lang="javascript" src="js/d3v3.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
   <script lang="javascript" src="js/data.js"></script>
   <script lang="javascript" src="js/dataWrangle.js"></script>
+  <link rel="stylesheet" href="style.css">
+  
 </head>
 <body>
+<svg width="1110" height="550"></svg>
 <script>
 
 //DATA: 
@@ -33,6 +36,53 @@ for (var i = root[0].Year; i <= 2016; i++){
 }
 console.log(byYear);
 // STEP 2: make a bar chart
+
+
+
+var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom;
+
+var x = d3.scaleBand().rangeRound([0, width]).paddingInner(0.1),
+    y = d3.scaleLinear().rangeRound([height, 0]);
+
+var g = svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+
+var data = byYear;
+
+  x.domain(data.map(function(d) { return d.year; }));
+  y.domain([0, 8]);
+
+  g.append("g")
+      .attr("class", "axis axis--x")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x).ticks(d3.timeYear.every(5)));
+
+  g.append("g")
+      .attr("class", "axis axis--y")
+      .call(d3.axisLeft(y).ticks(8))
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("Frequency");
+
+  g.selectAll(".bar")
+    .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.year); })
+      .attr("y", function(d) { return y(d.hurricanes.length); })
+      .attr("width", x.bandwidth())
+      .attr("height", function(d) { return height - y(d.hurricanes.length); });
+
+
+
 
 
 

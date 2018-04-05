@@ -11,7 +11,7 @@
   
 </head>
 <body>
-<svg width="1110" height="550"></svg>
+<svg width="1110" height="600"></svg>
 <script>
 
 //DATA: 
@@ -60,7 +60,17 @@ var data = byYear;
   g.append("g")
       .attr("class", "axis axis--x")
       .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x).ticks(d3.timeYear.every(5)));
+      .call(d3.axisBottom(x).ticks(50))
+      .selectAll("text")
+      .style("text-anchor","end")
+      .attr("display", function(d) {
+        if (!(d % 5 == 0)) {
+          return "none";
+        }
+      })
+      .attr("dx", "-.8em")
+      .attr("dy",".15em")
+      .attr("transform", "rotate(-65)");
 
   g.append("g")
       .attr("class", "axis axis--y")
@@ -79,11 +89,17 @@ var data = byYear;
       .attr("x", function(d) { return x(d.year); })
       .attr("y", function(d) { return y(d.hurricanes.length); })
       .attr("width", x.bandwidth())
-      .attr("height", function(d) { return height - y(d.hurricanes.length); });
+      .attr("height", function(d) { return height - y(d.hurricanes.length); })
+      .on("mouseover", handleMouseOver)
+      .on("mouseout", handleMouseOut);
 
+      function handleMouseOver() {
+        d3.select(this).style("fill", "red");
+      };
 
-
-
+      function handleMouseOut() {
+        d3.select(this).style("fill", "steelblue");
+      };
 
 
 </script>

@@ -50,7 +50,7 @@ var x = d3.scaleBand().rangeRound([0, width]).paddingInner(0.1),
 var g = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-
+var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
 var data = byYear;
 
@@ -90,15 +90,20 @@ var data = byYear;
       .attr("y", function(d) { return y(d.hurricanes.length); })
       .attr("width", x.bandwidth())
       .attr("height", function(d) { return height - y(d.hurricanes.length); })
-      .on("mouseover", handleMouseOver)
+      .on("mouseover", function (d) { 
+        var elem = d3.select(this);
+          elem.style("fill", "red");
+          tooltip.style("left", d3.event.pageX - 50 + "px")
+                 .style("top", d3.event.pageY - 70 + "px")
+                 .style("display", "inline-block")
+                 .html(d.hurricanes[0].Region[0].state); // NEEDSWORK 
+        })
+      
       .on("mouseout", handleMouseOut);
-
-      function handleMouseOver() {
-        d3.select(this).style("fill", "red");
-      };
 
       function handleMouseOut() {
         d3.select(this).style("fill", "steelblue");
+          tooltip.style("display", "none");
       };
 
 

@@ -11,8 +11,20 @@
   
 </head>
 <body>
-<svg width="1110" height="600"></svg>
+<section class="landing-page">
+  <p class="main-text">
+    It's Hurricane Season!
+  </p>
+</section>  
+
+
+
+<svg width="1100" height="700"></svg>
+
 <script>
+
+
+
 
 //DATA: 
 // root: an array with a hurricane per index
@@ -44,7 +56,11 @@ var svg = d3.select("svg"),
     width = +svg.attr("width") - margin.left - margin.right,
     height = +svg.attr("height") - margin.top - margin.bottom;
 
-var x = d3.scaleBand().rangeRound([0, width]).paddingInner(0.1),
+var x = d3.scaleBand().range([0, width])
+          .paddingInner([0.2])
+          .paddingOuter([.8])
+          .align(.5),
+
     y = d3.scaleLinear().rangeRound([height, 0]);
 
 var g = svg.append("g")
@@ -91,12 +107,15 @@ var data = byYear;
       .attr("width", x.bandwidth())
       .attr("height", function(d) { return height - y(d.hurricanes.length); })
       .on("mouseover", function (d) { 
+
+        console.log("in tooltip", d.hurricanes[0]);
+
         var elem = d3.select(this);
           elem.style("fill", "red");
           tooltip.style("left", d3.event.pageX - 50 + "px")
                  .style("top", d3.event.pageY - 70 + "px")
                  .style("display", "inline-block")
-                 .html(d.hurricanes[0].Region[0].state); // NEEDSWORK 
+                 .html(d.hurricanes[0].Year); // NEEDSWORK 
         })
       
       .on("mouseout", handleMouseOut);
@@ -105,9 +124,6 @@ var data = byYear;
         d3.select(this).style("fill", "steelblue");
           tooltip.style("display", "none");
       };
-
-
 </script>
 </body>
-
 </html>

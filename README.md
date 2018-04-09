@@ -17,22 +17,31 @@ MINOR PROBLEMS
 - Fix extra space on L and R in bar chart
 - Years (like 2016) cut off
 
-DONE
-- Fix x axis on bar chart
-- Add interaction on hover and click
 
 
-## Possible Plan Ideas
 
-Bar Chart 1
+## GOALS
 
-Tool tips with more info ?
-What is the info in the tool tip?
+# Bar Chart 1
+- Make it look nicer
+- IDEAL: Ballard's cool transition
+- MVP: tooltip with year or just fix axis
+    - make scalable, responsive, dynamic, blockchain
+    - possible: grid lines?
 
 
-Chart 2  -- scatterplot?
+# Chart 2 
+- Grouped bar chart!
+- x axis: june through november
+- y axis: severity or max wind speed
+- Hover over bar gives you name of hurricane
+- Click sends you to the map
 
-x axis - month
-y axis - severity
-
-Map
+# Map
+- Depicting 1 hurricane
+- showing severity in each state by color
+- include info about hurricane name and month, windspeed
+- key
+- not for MVP:
+        - play through hurricanes
+        - include arrow with direction

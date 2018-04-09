@@ -14,7 +14,7 @@
 
 MINOR PROBLEMS
 - Fix ticks on x axis
-- Fix extra space on L and R in bar chart
+- Fix extra space on L and R in bar chart - DONE 
 - Years (like 2016) cut off
 
 

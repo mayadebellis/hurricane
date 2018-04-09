@@ -1,3 +1,25 @@
+
+
+body{
+	margin: 0px;
+	padding-bottom: 50px;
+}
+
+.landing-page{
+	height: 107%;
+	background-color: black;
+	margin-bottom: 50px;
+}
+
+.main-text {
+	color: white;
+	padding-top: 15%;
+	width: 100%;
+	text-align: center;
+}
+
+
+
 .bar {
   fill: steelblue;
 }

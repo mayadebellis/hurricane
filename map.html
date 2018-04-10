@@ -19,8 +19,20 @@
   pointer-events: none;
 }
 
+asvg {
+	 margin-left: -365px;
+}
+
+.map {
+	   margin-left: 50px;
+	   overflow: hidden;
+}
 </style>
-<svg width="960" height="600"></svg>
+
+<div class="map">
+	<svg width="960" height="600"></svg>
+
+</div>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/topojson.v2.min.js"></script>
 <script lang="javascript" src="js/jquery-3.1.0.min.js"></script>
@@ -34,10 +46,9 @@
 console.log(root);
 //console.log(states_json);
 
-// var color = d3.scaleOrdinal(d3.schemeCategory20);
-var colors = ["rgb(192,192,192)", "rgb(255,255,204)", "rgb(255,231,117)", "rgb(255,193,64)", "rgb(255,143,32)", "(255,96,96)"];
+var colors = ["rgb(192,192,192)", "rgb(255, 255, 0)", "rgb(255, 211, 0)", "rgb(255, 166, 0)", "rgb(255, 113, 0)", "rgb(255, 0, 0)"];
 
-var key = 250; // 288 250 275 ---->> !IMPORTANT! ONLY NEED TO CHANGE THIS
+var key = 7; // 288 250 275 158 ---->> !IMPORTANT! ONLY NEED TO CHANGE THIS
 var svg = d3.select("svg");
 
 var path = d3.geoPath();
@@ -103,7 +114,7 @@ function getStateIDs () {
 function checkCategory (id) {
 	
 		for (var i = 0; i < affected_states.length; i++)  {
-			//console.log(affected_states[i].sid);
+			console.log(affected_states[i].category);
 			if (affected_states[i].sid == id) {
 					return colors[affected_states[i].category];
 			}

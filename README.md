@@ -45,3 +45,27 @@ MINOR PROBLEMS
 - not for MVP:
         - play through hurricanes
         - include arrow with direction
+
+# Questions 
+- What questions can people answer when using our viz? 
+- Should I move to Louisiana or Florida if i am afraid of hurricanes? 
+	- Want to see a viz that displays category and frequency of hurricanes
+	- How frequently do hurricanes hit Florida? 
+	- How severe are the hurricanes that hit Florida? 
+	- How many have hit in the past one / five years? 
+	- What are the least windy months  
+	
+- Were there a lot of hurricanes last year?
+- 
+hypothesis: there would be more and (they would be worse), turns out its not that 
+
+
+
+
+
+
+
+
+
+
+

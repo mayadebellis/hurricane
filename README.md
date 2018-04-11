@@ -54,10 +54,21 @@ MINOR PROBLEMS
 	- How severe are the hurricanes that hit Florida? 
 	- How many have hit in the past one / five years? 
 	- What are the least windy months  
-	
+
 - Were there a lot of hurricanes last year?
 - 
 hypothesis: there would be more and (they would be worse), turns out its not that 
+
+# Summary of discussion 
+- decided to go full map,
+- look for FEMA spending data
+- tell story of how we wanted to find how hurricanes have changed over time
+	- How did we get here? 
+	- We thought this, so check out this clean cut bar chart 
+	- lets go to a map that filters data and is interactive in that sense 
+		- all of the hurricanes that have happened and color is ordinal scale that is number of hurricanes that have happened in that state, frequency of hurricanes
+		- filter of hurricanes that are of a certain category 
+		- have a date range slider/filter function?
 
 
 

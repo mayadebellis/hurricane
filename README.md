@@ -71,6 +71,21 @@ hypothesis: there would be more and (they would be worse), turns out its not tha
 		- have a date range slider/filter function?
 
 
+# Summary of discussion pt 2
+- One map to rule them all 
+- map will have aggregate data of total number of hurricanes that have hit each state, so each state will be colored based off of number of hurricanes that hit it 
+- Tooltip will display exact number of hurricanes that hit it because all of the other states have been bucketed 
+-we will have a filter section 
+	- By year: have start yr and end yr 
+	- by month: select / de-select certain months to display data 
+	- reset/clear filter button 
+	- Deadliest hurricanes?? - if we're feelin real up to it we can have this filter option 
+
+# Tasks: 
+-Ballard: get pie chart working
+-Maya: data manipulation/wrangling 
+-Olivia: make things happen on screen - filter btns, move sliders in right place-, colors working
+
 
 
 

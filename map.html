@@ -27,6 +27,42 @@ asvg {
 	   margin-left: 50px;
 	   overflow: hidden;
 }
+
+# THIS is all shit for the slider
+.ticks {
+    font: 10px sans-serif;
+}
+    
+.track,
+.track-inset,
+.track-overlay {
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: #000;
+  stroke-opacity: 0.3;
+  stroke-width: 10px;
+}
+
+.track-inset {
+  stroke: #ddd;
+  stroke-width: 8px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  stroke: transparent;
+  cursor: crosshair;
+}
+
+.handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25px;
+}   
 </style>
 
 <div class="map">
@@ -123,5 +159,15 @@ function checkCategory (id) {
 }
 
 </script>`
+<div id="row-filter">
+        <svg width="960" height="150" id="svg-filter"></svg>
+      <p>
+        <label for="label-years">
+               range of viewed years: 
+               <span id="years-range">...</span>
+        </label>
+      </p>
+      </div>
+<script src="silder.js"></script>
 </body>
 </html>

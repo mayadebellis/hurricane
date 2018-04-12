@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script lang="javascript" src="js/data.js"></script>
+<script lang="javascript" src="js/dataWrangle.js"></script>
+
+<style type="text/css">
+
+.axis .domain {
+  display: none;
+}
+
+
+
+</style>
+<svg width="960" height="500"></svg>
+</head>
+<body>
+<script type="text/javascript">
+
+// THIS IS IN INDEX, JUST COPIED
+var byYear = [];
+for (var i = root[0].Year; i <= 2016; i++){
+  var obj = {};
+  obj.year = i;
+  obj.hurricanes = []
+  for (x in root){
+    if (root[x].Year == i){
+      obj.hurricanes.push(root[x]);
+    }
+  }
+  byYear.push(obj)
+}
+
+
+
+
+var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom,
+    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var x0 = d3.scaleBand()
+    .rangeRound([0, width])
+    .paddingInner(0.1);
+
+var x1 = d3.scaleBand()
+    .padding(0.05);
+
+var y = d3.scaleLinear()
+    .rangeRound([height, 0]);
+
+var z = d3.scaleOrdinal()
+    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+// d3.csv("data.csv", function(d, i, columns) {
+//   for (var i = 1, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
+//   return d;
+// }, function(error, data) {
+//   if (error) throw error;
+
+ //NEEDSWORK:: This will end up being the year selected from the previous 
+    var rawData = byYear[18].hurricanes;
+    console.log(data);
+
+
+    var maxNumHurricanesPerMonth = getMaxCanes(rawData);
+    var keys = [];
+        for (i = 0; i < maxNumHurricanesPerMonth; i++) {
+            keys.push("hur" + i);
+    }
+    console.log(keys);
+
+    var data = createNewDataSet(rawData, keys);
+
+
+
+
+  //WHAT I WANT MY DATA TO LOOK LIKE
+  //
+  // keys = max num huricane in a single month
+  // data = array of objects
+  // object = {month: x, key1: {hurKey: num, hurCategory: category}}
+
+
+
+
+
+  x0.domain(keys.map(function(d) { return d.Month; }));
+  x1.domain(keys).rangeRound([0, x0.bandwidth()]);
+  y.domain([0, d3.max(data, function(d) { return d.Category})]);
+
+  // console.log("this is x0:");
+  // console.log(x0);
+
+  // console.log("this is x1:");
+  // console.log(x1);
+
+  // console.log("this is y:");
+  // console.log(y);
+
+  g.append("g")
+    .selectAll("g")
+    .data(data)
+    .enter().append("g")
+      .attr("transform", function(d) { return "translate(" + x0(d.State) + ",0)"; })
+    .selectAll("rect")
+    .data(function(d) { return keys.map(function(key) { return {key: key, value: d.Category}; }); })
+    .enter().append("rect")
+      .attr("x", function(d) { return x1(d.Month); })
+      .attr("y", function(d) { return y(d.Category); })
+      .attr("width", x1.bandwidth())
+      .attr("height", function(d) { return height - y(d.value); })
+      .attr("fill", function(d) { return z(d.key); });
+
+  g.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x0));
+
+  g.append("g")
+      .attr("class", "axis")
+      .call(d3.axisLeft(y).ticks(null, "s"))
+    .append("text")
+      .attr("x", 2)
+      .attr("y", y(y.ticks().pop()) + 0.5)
+      .attr("dy", "0.32em")
+      .attr("fill", "#000")
+      .attr("font-weight", "bold")
+      .attr("text-anchor", "start")
+      .text("Population");
+
+  var legend = g.append("g")
+      .attr("font-family", "sans-serif")
+      .attr("font-size", 10)
+      .attr("text-anchor", "end")
+    .selectAll("g")
+    .data(keys.slice().reverse())
+    .enter().append("g")
+      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+  legend.append("rect")
+      .attr("x", width - 19)
+      .attr("width", 19)
+      .attr("height", 19)
+      .attr("fill", z);
+
+  legend.append("text")
+      .attr("x", width - 24)
+      .attr("y", 9.5)
+      .attr("dy", "0.32em")
+      .text(function(d) { return d; });
+// });
+
+
+
+function getMaxCanes(data){
+    var counts = {};
+    var compare = 0;
+    var mostFrequent;
+    for(var i = 0, len = data.length; i < len; i++){
+       var word = data[i].Month;
+       
+       if(counts[word] === undefined){
+           counts[word] = 1;
+       }else{
+           counts[word] = counts[word] + 1;
+       }
+       if(counts[word] > compare){
+             compare = counts[word];
+             mostFrequent = data[i].Month;
+       }
+    }
+    return counts[mostFrequent];
+}
+
+  // data = array of objects
+  // object = {month: x, key1: {hurKey: num, hurCategory: category}}
+function createNewDataSet(rawData, keys){
+
+    var counts = {};
+    var compare = 0;
+    var mostFrequent;
+    for(var i = 0, len = rawData.length; i < len; i++){
+       var word = rawData[i].Month;
+       
+       if(counts[word] === undefined){
+           counts[word] = 1;
+       }else{
+           counts[word] = counts[word] + 1;
+       }
+       if(counts[word] > compare){
+             compare = counts[word];
+             mostFrequent = rawData[i].Month;
+       }
+    }
+
+    var data = [];
+
+    for (key in counts){
+        //create new object
+        var obj.month = key;
+        var count = 0;
+
+        //for each elem in raw where month == key, add on.
+        for (cane in rawData){
+            if (cane.Month == key) {
+                var elem.hurKey = "hur" + count;
+                //NEEDSWORK:: here potentially include all the rest of the data
+                elem.hurCategory = cane.Category;
+
+                count++;
+            }
+        }
+
+        for (var i = count; i < counts[mostFrequent]; i++) {
+            var 
+        }
+    }
+
+    return "test";
+
+
+}
+
+
+</script>
+</body>
+</html>

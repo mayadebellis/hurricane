@@ -19,7 +19,7 @@
   pointer-events: none;
 }
 
-svg {
+asvg {
 	 margin-left: -365px;
 }
 
@@ -81,6 +81,7 @@ svg {
 
 console.log(root);
 //console.log(states_json);
+var dataByState = bucketByState(root);
 
 var colors = ["rgb(192,192,192)", "rgb(255, 255, 0)", "rgb(255, 211, 0)", "rgb(255, 166, 0)", "rgb(255, 113, 0)", "rgb(255, 0, 0)"];
 
@@ -156,6 +157,38 @@ function checkCategory (id) {
 			}
 		}
 
+}
+
+function bucketByState(root) {
+    console.log("in bucket");
+    var stateData = states_json;
+
+    for (var i in stateData){
+        stateData[i].hurricanes = [];
+    }
+
+    //for each hurricane
+    for (var cane in root) {
+        //and each state that it hit
+        for (var st in root[cane].Region) {
+            var index = stateData.findIndex(function(element) {
+                return element.abbrev == root[cane].Region[st].state;
+            });
+            //add it to the proper state array
+            var temp = {};
+            temp.category = root[cane].Region[st].category;
+            temp.hurricane = root[cane];
+            console.log("in fail?");
+            console.log(temp);
+            console.log("root[cane].Region");
+
+            if (temp.category != null){
+                stateData[index].hurricanes.push(temp);
+            }
+        }
+    }
+    console.log(stateData);
+    return stateData;
 }
 
 </script>`

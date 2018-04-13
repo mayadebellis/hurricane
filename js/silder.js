@@ -1,5 +1,5 @@
 
-var svgFilter = d3.select("#svg-filter");
+var svgFilter = d3.select("#byYear");
 // slider
   var sliderWidth = 500;
   var xYearFirst = d3.scaleLinear()

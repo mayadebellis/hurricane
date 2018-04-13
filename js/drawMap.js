@@ -1,17 +1,20 @@
 
 console.log(root);
-//console.log(states_json);
+////console.log(states_json);
 var dataByState = bucketByState(root);
 
-var colors = ["rgb(192,192,192)", "rgb(255, 255, 0)", "rgb(255, 211, 0)", "rgb(255, 166, 0)", "rgb(255, 113, 0)", "rgb(255, 0, 0)"];
+var reds = d3.scaleOrdinal(d3.schemeReds[5]);
+//THESE COLORS ARE WRONG tho? 
 
-var key = 7; // 288 250 275 158 ---->> !IMPORTANT! ONLY NEED TO CHANGE THIS
+//var colors = ["rgb(192,192,192)", "rgb(255, 255, 0)", "rgb(255, 211, 0)", "rgb(255, 166, 0)", "rgb(255, 113, 0)", "rgb(255, 0, 0)"];
+
+var key = 142; // 288 250 275 158 ---->> !IMPORTANT! ONLY NEED TO CHANGE THIS
 var svg = d3.select("svg");
 
 var path = d3.geoPath();
 
 var affected_states = root[key].Region;
-console.log(affected_states);
+//console.log(affected_states);
 
 var state_IDs =[];
 getStateIDs();
@@ -23,7 +26,7 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
 
   var us_states = us.objects.states.geometries;
   //var id = get_state_id();
- //console.log(id);
+ ////console.log(id);
 
   svg.append("g")
       .attr("class", "states")
@@ -71,16 +74,19 @@ function getStateIDs () {
 function checkCategory (id) {
 	
 		for (var i = 0; i < affected_states.length; i++)  {
-			console.log(affected_states[i].category);
+			//console.log(affected_states[i].category);
 			if (affected_states[i].sid == id) {
-					return colors[affected_states[i].category];
+          console.log(affected_states[i].category);
+          console.log(reds(affected_states[i].category));
+
+					return reds(affected_states[i].category);
 			}
 		}
 
 }
 
 function bucketByState(root) {
-    console.log("in bucket");
+    //console.log("in bucket");
     var stateData = states_json;
 
     for (var i in stateData){
@@ -98,15 +104,15 @@ function bucketByState(root) {
             var temp = {};
             temp.category = root[cane].Region[st].category;
             temp.hurricane = root[cane];
-            console.log("in fail?");
-            console.log(temp);
-            console.log("root[cane].Region");
+            //console.log("in fail?");
+            //console.log(temp);
+            //console.log("root[cane].Region");
 
             if (temp.category != null){
                 stateData[index].hurricanes.push(temp);
             }
         }
     }
-    console.log(stateData);
+    //console.log(stateData);
     return stateData;
 }

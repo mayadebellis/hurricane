@@ -79,12 +79,14 @@ hypothesis: there would be more and (they would be worse), turns out its not tha
 	- By year: have start yr and end yr 
 	- by month: select / de-select certain months to display data 
 	- reset/clear filter button 
-	- Deadliest hurricanes?? - if we're feelin real up to it we can have this filter option 
+	- *NOT FOR MVP* Deadliest hurricanes?? - if we're feelin real up to it we can have this filter option 
 
 # Tasks: 
 -Ballard: get pie chart working
 -Maya: data manipulation/wrangling 
--Olivia: make things happen on screen - filter btns, move sliders in right place-, colors working
+-Olivia: 
+	-> DONE: make things happen on screen - filter btns, move sliders in right place-, 
+	-> TODO: colors working -- maybe?
 
 
 

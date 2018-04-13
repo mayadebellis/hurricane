@@ -1,74 +1,5 @@
 <!DOCTYPE html>
 <head>
-<style>
-
-.states :hover {
-  opacity: 0.75;
-}
-
-.states {
-	fill: gray;
-}
-
-.state-borders {
-  fill: none;
-  stroke: #D3D3D3;
-  stroke-width: 0.5px;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  pointer-events: none;
-}
-
-asvg {
-	 margin-left: -365px;
-}
-
-.map {
-	   margin-left: 50px;
-	   overflow: hidden;
-}
-
-# THIS is all shit for the slider
-.ticks {
-    font: 10px sans-serif;
-}
-    
-.track,
-.track-inset,
-.track-overlay {
-  stroke-linecap: round;
-}
-
-.track {
-  stroke: #000;
-  stroke-opacity: 0.3;
-  stroke-width: 10px;
-}
-
-.track-inset {
-  stroke: #ddd;
-  stroke-width: 8px;
-}
-
-.track-overlay {
-  pointer-events: stroke;
-  stroke-width: 50px;
-  stroke: transparent;
-  cursor: crosshair;
-}
-
-.handle {
-  fill: #fff;
-  stroke: #000;
-  stroke-opacity: 0.5;
-  stroke-width: 1.25px;
-}   
-</style>
-
-<div class="map">
-	<svg width="960" height="600"></svg>
-
-</div>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/topojson.v2.min.js"></script>
 <script lang="javascript" src="js/jquery-3.1.0.min.js"></script>
@@ -77,130 +8,31 @@ asvg {
 <script lang="javascript" src="js/states.js"></script>
 <link rel="stylesheet" href="style.css">
 </head>
-<body> <script>
 
-console.log(root);
-//console.log(states_json);
-var dataByState = bucketByState(root);
-
-var colors = ["rgb(192,192,192)", "rgb(255, 255, 0)", "rgb(255, 211, 0)", "rgb(255, 166, 0)", "rgb(255, 113, 0)", "rgb(255, 0, 0)"];
-
-var key = 7; // 288 250 275 158 ---->> !IMPORTANT! ONLY NEED TO CHANGE THIS
-var svg = d3.select("svg");
-
-var path = d3.geoPath();
-
-var affected_states = root[key].Region;
-console.log(affected_states);
-
-var state_IDs =[];
-getStateIDs();
-
-var counter = 0;
-
-d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
-  if (error) throw error;
-
-  var us_states = us.objects.states.geometries;
-  //var id = get_state_id();
- //console.log(id);
-
-  svg.append("g")
-      .attr("class", "states")
-	    .selectAll("path")
-	    .data(topojson.feature(us, us.objects.states).features)
-	    .enter().append("path")
-      .attr("d", path)
-      .style("fill", function(d) { return chooseColor(d.id, state_IDs.find(function(element) {return element == d.id;}))});
-
-  svg.append("path")
-      .attr("class", "state-borders")
-      .attr("d", path(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; })));
-
-  var us_states = us.objects.states.geometries;
-
-});
-
-function chooseColor(id, affected) {
-		if (affected == 'undefined') {
-			return colors[0];
-		}
-		else {
-			if (affected == id)
-				return checkCategory(id);
-		}
-	}
-
-function getStateIDs () {
-	// Loop through all affected states
-	for (var i = 0; i < states_json.length; i++) {
-
-		for (var j = 0; j < affected_states.length; j++)  {
-			var dataState = affected_states[j].state;
-			var jsonState = states_json[i].abbrev;
-			var stateID = states_json[i].sid;
-
-		  if (affected_states[j].state == states_json[i].abbrev) {
-		  	state_IDs.push(stateID);
-		  	affected_states[j].sid = stateID;
-		  }
-		}
-	}
-}
-
-function checkCategory (id) {
-	
-		for (var i = 0; i < affected_states.length; i++)  {
-			console.log(affected_states[i].category);
-			if (affected_states[i].sid == id) {
-					return colors[affected_states[i].category];
-			}
-		}
-
-}
-
-function bucketByState(root) {
-    console.log("in bucket");
-    var stateData = states_json;
-
-    for (var i in stateData){
-        stateData[i].hurricanes = [];
-    }
-
-    //for each hurricane
-    for (var cane in root) {
-        //and each state that it hit
-        for (var st in root[cane].Region) {
-            var index = stateData.findIndex(function(element) {
-                return element.abbrev == root[cane].Region[st].state;
-            });
-            //add it to the proper state array
-            var temp = {};
-            temp.category = root[cane].Region[st].category;
-            temp.hurricane = root[cane];
-            console.log("in fail?");
-            console.log(temp);
-            console.log("root[cane].Region");
-
-            if (temp.category != null){
-                stateData[index].hurricanes.push(temp);
-            }
-        }
-    }
-    console.log(stateData);
-    return stateData;
-}
-
-</script>`
-<div id="row-filter">
-        <svg width="960" height="150" id="svg-filter"></svg>
-      <p>
-        <label for="label-years">
-               range of viewed years: 
-               <span id="years-range">...</span>
-        </label>
-      </p>
+<body> 
+  <h1>Hurricanes Throughout History</h1>
+  <h3>An Exploratory Visualization</h3>
+  <div class="container">
+    <div class="map">
+      <svg width="960" height="600"></svg>
+    </div>
+    <div class="sidebar">
+      <div id="filters">
+        <svg width="650" height="150" id="svg-filter"></svg>
+          <p>
+            <label for="label-years">
+                   Current Range: 
+                   <span id="years-range">...</span>
+            </label>
+          </p>
       </div>
-<script src="silder.js"></script>
+      <div class="chart">
+      </div>
+    </div>
+  </div>
+
+
+  <script src="js/silder.js"></script>
+  <script src="js/drawMap.js"></script>
 </body>
 </html>

@@ -1,27 +1,16 @@
-
-
-body{
-	margin: 0px;
-	padding-bottom: 50px;
+body {
+  font-family: Arial;
+  margin: 30px;
 }
 
-.landing-page{
-	height: 107%;
-	background-color: black;
-	margin-bottom: 50px;
+.container {
+  display: flex;
+  justify-content: space-between;
 }
 
-.main-text {
-	color: white;
-	padding-top: 15%;
-	width: 100%;
-	text-align: center;
-}
-
-
-
-.bar {
-  fill: steelblue;
+.sidebar {
+  display: flex;
+  flex-direction: column;
 }
 
 .toolTip {
@@ -35,13 +24,64 @@ body{
   text-align: center;
 }
 
-#video-background {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -100;
+.states :hover {
+  opacity: 0.75;
 }
+
+.states {
+  fill: gray;
+}
+
+.state-borders {
+  fill: none;
+  stroke: #D3D3D3;
+  stroke-width: 0.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+.map svg {
+   margin-left: -365px;
+}
+
+.map {
+     /*margin-left: 50px;*/
+     overflow: hidden;
+}
+
+# THIS is all shit for the slider
+.ticks {
+    font: 10px sans-serif;
+}
+    
+.track,
+.track-inset,
+.track-overlay {
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: #000;
+  stroke-opacity: 0.3;
+  stroke-width: 10px;
+}
+
+.track-inset {
+  stroke: #ddd;
+  stroke-width: 8px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  stroke: transparent;
+  cursor: crosshair;
+}
+
+.handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25px;
+}   

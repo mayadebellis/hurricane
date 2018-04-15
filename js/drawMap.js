@@ -1,89 +1,71 @@
-
 console.log(root);
-////console.log(states_json);
+
 var dataByState = bucketByState(root);
 
-var reds = d3.scaleOrdinal(d3.schemeReds[5]);
-//THESE COLORS ARE WRONG tho? 
-
-//var colors = ["rgb(192,192,192)", "rgb(255, 255, 0)", "rgb(255, 211, 0)", "rgb(255, 166, 0)", "rgb(255, 113, 0)", "rgb(255, 0, 0)"];
-
-var key = 142; // 288 250 275 158 ---->> !IMPORTANT! ONLY NEED TO CHANGE THIS
 var svg = d3.select("svg");
+
+// SETTING ORDINAL COLORS
+var quantize = d3.scaleQuantize()
+  .domain([ 0, 120])
+  .range(d3.range(8).map(function(i) { return "q" + i + "-8"; }));
+
+var svg = d3.select("svg");
+
+svg.append("g")
+  .attr("class", "legendQuant")
+  .attr("transform", "translate(900,250)");
+
+var legend = d3.legendColor()
+  .labelFormat(d3.format(".0f"))
+  .useClass(true)
+  .title("Aggregate Total of Hurricanes")
+  .titleWidth(100)
+  .scale(quantize);
+
+svg.select(".legendQuant")
+  .call(legend);
+
+// MAP
 
 var path = d3.geoPath();
 
-var affected_states = root[key].Region;
-//console.log(affected_states);
-
-var state_IDs =[];
-getStateIDs();
-
-var counter = 0;
+// tooltip
+var div = d3.select("body").append("div") 
+    .attr("class", "tooltip")       
+    .style("opacity", 0);
 
 d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
   if (error) throw error;
 
-  var us_states = us.objects.states.geometries;
-  //var id = get_state_id();
- ////console.log(id);
-
   svg.append("g")
       .attr("class", "states")
-	    .selectAll("path")
-	    .data(topojson.feature(us, us.objects.states).features)
-	    .enter().append("path")
+      .selectAll("path")
+      .data(topojson.feature(us, us.objects.states).features)
+      .enter().append("path")
       .attr("d", path)
-      .style("fill", function(d) { return chooseColor(d.id, state_IDs.find(function(element) {return element == d.id;}))});
+      .attr("class", function(d) {return quantize((dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length)});
 
   svg.append("path")
       .attr("class", "state-borders")
       .attr("d", path(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; })));
 
-  var us_states = us.objects.states.geometries;
+
+  svg.selectAll("path")
+      .on("mouseover", function(d) {    
+          div.transition()    
+              .duration(200)    
+              .style("opacity", .9);    
+          div .html(((dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length));
+          })          
+      .on("mouseout", function(d) {   
+          div.transition()    
+              .duration(500)    
+              .style("opacity", 0); 
+      });
 
 });
 
-function chooseColor(id, affected) {
-		if (affected == 'undefined') {
-			return colors[0];
-		}
-		else {
-			if (affected == id)
-				return checkCategory(id);
-		}
-	}
-
-function getStateIDs () {
-	// Loop through all affected states
-	for (var i = 0; i < states_json.length; i++) {
-
-		for (var j = 0; j < affected_states.length; j++)  {
-			var dataState = affected_states[j].state;
-			var jsonState = states_json[i].abbrev;
-			var stateID = states_json[i].sid;
-
-		  if (affected_states[j].state == states_json[i].abbrev) {
-		  	state_IDs.push(stateID);
-		  	affected_states[j].sid = stateID;
-		  }
-		}
-	}
-}
-
-function checkCategory (id) {
-	
-		for (var i = 0; i < affected_states.length; i++)  {
-			//console.log(affected_states[i].category);
-			if (affected_states[i].sid == id) {
-          console.log(affected_states[i].category);
-          console.log(reds(affected_states[i].category));
-
-					return reds(affected_states[i].category);
-			}
-		}
-
-}
+// AUXILIARY FUNCTIONS
 
 function bucketByState(root) {
     //console.log("in bucket");

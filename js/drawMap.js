@@ -116,3 +116,26 @@ function bucketByState(root) {
     //console.log(stateData);
     return stateData;
 }
+
+//FILTER by Year
+function filterByYear(totalData, low, high){
+    var data = JSON.parse(JSON.stringify(totalData));
+    console.log(totalData);
+
+
+
+    for (var state in data){
+
+        for (var j in data[state].hurricanes){
+            var year = data[state].hurricanes[j].hurricane.Year;
+            //console.log(year);
+            if (year < low || year > high){
+                console.log("BEFORE", data[state].hurricanes);
+                data[state].hurricanes.splice(j, 1);
+                console.log("AFTER", data[state].hurricanes);
+            }
+        }
+    }
+    return data;
+}
+

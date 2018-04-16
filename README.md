@@ -80,6 +80,7 @@ hypothesis: there would be more and (they would be worse), turns out its not tha
 	- by month: select / de-select certain months to display data 
 	- reset/clear filter button 
 	- *NOT FOR MVP* Deadliest hurricanes?? - if we're feelin real up to it we can have this filter option 
+	- By category?
 
 # Tasks: 
 -Ballard: get pie chart working

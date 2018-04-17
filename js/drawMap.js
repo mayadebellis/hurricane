@@ -1,9 +1,9 @@
 console.log(root);
 
 var dataByState = bucketByState(root);
-console.log(dataByState);
+//console.log(dataByState);
 // var filteredData = filterByYear(dataByState, 1990, 1992);
-// console.log(filteredData);
+// //console.log(filteredData);
 var svg = d3.select("svg");
 
 // SETTING ORDINAL COLORS
@@ -31,12 +31,6 @@ svg.select(".legendQuant")
 
 var path = d3.geoPath();
 
-// tooltip
-// var div = d3.select("body").append("div") 
-//     .attr("class", "tooltip")       
-//     .style("opacity", 0);
-
-
 // pie chart tooltip
 
 
@@ -52,7 +46,6 @@ var data1 = [
 ];
 var color1 = d3.scaleOrdinal(d3.schemeCategory10);
 var radius = 100;
-
 
 var div = d3.select("body").append("div") 
     .attr("id", "tooltip")       
@@ -76,14 +69,9 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
       .attr("class", "state-borders")
       .attr("d", path(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; })));
 
-
   svg.selectAll("path")
-      .on("mouseover", function(d) {    
-          div.transition()    
-              .duration(200)    
-              .style("opacity", .9);    
-          div .html(((dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length));
-         
+      .on("mouseover", function(d) {
+        showToolTip(d);
   
         var state_obj = (dataByState.find(function(element) {return element.sid == d.id;})).hurricanes;
         
@@ -105,7 +93,7 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
 
           }
         }
-        console.log(data1);
+        //console.log(data1);
 
 
         var pie_svg = d3.select(".chart").append("svg")
@@ -124,7 +112,7 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
           .value(function(d) {return d.value; })
           .sort(null);
 
-        console.log("this is", this);
+        //console.log("this is", this);
 
         var g_pie_slice = g_pie.selectAll('g')
           .data(pie(data1))
@@ -145,17 +133,9 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
             .attr("fill", "black")
             
           .text(function(d){
-            console.log(d.data.name);
+            //console.log(d.data.name);
             return d.data.name;
           });
-          
-        div.transition()
-            .duration(200)
-            .style("opacity", .9);
-
-        div.style("display", "inline-block")
-            .style("position", "absolute")
-            .html(((dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length)); 
         })
 
       .on("mouseout", function(d) {   
@@ -171,8 +151,20 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
         
           var old_pie = d3.selectAll(".pie").remove(); 
       });
+
+      .on("click", function(d) {
+        //maybe brush the state?!
+      })
 });
 
+function showToolTip(d) {
+          div.transition()    
+              .duration(500)    
+              .style("opacity", .9);    
+          div .html(((dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length))
+             .style("left", (d3.event.pageX - 100) + "px")
+             .style("top", (d3.event.pageY - 20) + "px");
+}
 
 // TODO: Producing an error? Unclear why....
 function reset() {
@@ -200,12 +192,12 @@ function update(){
     }
   });
 
-  console.log("choices:", choices)
+  //console.log("choices:", choices)
 
   if(choices.length > 0){
     newData = filterMonth(dataByState, choices);
-    console.log("NEW DATA:")
-    console.log(newData);
+    //console.log("NEW DATA:")
+    //console.log(newData);
   } else {
     newData = dataByState;     
   } 
@@ -225,8 +217,8 @@ function filterMonth(oldData, choices){
   
   for (var i = 0; i < data.length; i++) {
       var newData = data[i].hurricanes.filter(function(d, i){
-            //console.log("to return:")
-            //console.log(choices.includes(d.hurricane.Month));
+            ////console.log("to return:")
+            ////console.log(choices.includes(d.hurricane.Month));
             return choices.includes(d.hurricane.Month);
       });
       data[i].hurricanes = newData;
@@ -260,7 +252,7 @@ function bucketByState(root) {
             }
         }
     }
-    //console.log(stateData);
+    ////console.log(stateData);
     return stateData;
 }
 
@@ -268,32 +260,32 @@ function bucketByState(root) {
 
 //FILTER by Year
 function filterByYear(data, low, high){
-  console.log(data);
+  //console.log(data);
     // var data = JSON.parse(JSON.stringify(totalData));
-    // console.log(totalData);
-    console.log("low = ", low);
-    console.log("high = ", high);
+    // //console.log(totalData);
+    //console.log("low = ", low);
+    //console.log("high = ", high);
 
 
 
     for (var state in data){
-        //console.log("i = ", state);
+        ////console.log("i = ", state);
         for (var j in data[state].hurricanes){
-            //console.log("j = ", j);
+            ////console.log("j = ", j);
             var year = data[state].hurricanes[j].hurricane.Year;
-            //console.log(year);
+            ////console.log(year);
             if ((year < low) || (year > high)){
-                //console.log(year);
-                //console.log("BEFORE", data[state].hurricanes);
+                ////console.log(year);
+                ////console.log("BEFORE", data[state].hurricanes);
                 data[state].hurricanes.splice(j, 1);
-                //console.log("AFTER", data[state].hurricanes);
+                ////console.log("AFTER", data[state].hurricanes);
             }
             else {
-              //console.log("in range! year = ", year)
+              ////console.log("in range! year = ", year)
             }
         }
     }
-    console.log(data);
+    //console.log(data);
     return data;
 }
 

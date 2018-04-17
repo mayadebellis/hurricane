@@ -9,35 +9,20 @@
 .q8-8 { fill:#8b0000; }
 
 
-#tooltip {
-      position: absolute;
-      width: 200px;
-      height: auto;
-      padding: 10px;
-      background-color: white;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-      -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-      pointer-events: none;
-    }
 
-    #tooltip.hidden {
-      display: none;
-    }
+@font-face {
+    font-family: futura-medium;
+    src: url(FuturaStd-Medium.otf);
+    /*font-weight: bold;*/
+}
 
-    #tooltip p {
-      margin: 0;
-      font-family: Futura;
-      font-size: 16px;
-      line-height: 20px;
-    }
-
+html{
+  height: 100%;
+}
 body {
   font-family: Arial;
-  margin: 30px;
+  margin: 0px;
+  height: 100%;
 }
 
 .container {
@@ -90,6 +75,90 @@ body {
      /*margin-left: 50px;*/
      overflow: hidden;
 }
+
+/* Piechart Tooltip */
+#tooltip {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      padding: 10px;
+      background-color: white;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      pointer-events: none;
+    }
+
+    #tooltip.hidden {
+      display: none;
+    }
+
+    #tooltip p {
+      margin: 0;
+      font-family: Futura;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  .name-text {
+    font-size: 12px;
+  }
+
+
+.landing-page {
+
+    background-image: url("hurricane_pic.jpg");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.mask {
+    background-color: rgba(0,0,0,.2);
+    left: 0;
+    height: 100%;
+    width: 100%;
+    top: 0;
+}
+
+.vis-container {
+  margin: 30px;
+}
+
+h1.vis-title {
+  font-size: 45px;
+}
+h3.vis-title{
+  font-size: 25px;
+}
+
+.vis-title{
+  
+  color: #fff;
+  font-family: futura-medium;
+  float: right;
+  width: 100%;
+  margin-right: 70px;
+  text-align: right;
+}
+
+.landing-text {
+  font-size: 16px;
+  font-family: futura-medium;
+  color: #fff;
+  margin-left: 70px;
+  margin-top: 0px;
+}
+
+
+
+
 
 # THIS is all shit for the slider
 .ticks {

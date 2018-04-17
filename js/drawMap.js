@@ -45,7 +45,10 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
       .data(topojson.feature(us, us.objects.states).features)
       .enter().append("path")
       .attr("d", path)
-      .attr("class", function(d) {return quantize((dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length)});
+      .attr("class", function(d) {
+        var length = (dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length;
+        if (length > 0)
+          return quantize(length)});
 
   svg.append("path")
       .attr("class", "state-borders")

@@ -1,14 +1,27 @@
-.q0-8 { fill: #A9A9A9; }
-.q1-8 { fill:#efb19c; }
-.q2-8 { fill:#f79172; }
-.q3-8 { fill:#f37351; }
-.q4-8 { fill:#e85736; }
-.q5-8 { fill:#d73c21; }
-.q6-8 { fill:#c22310; }
-.q7-8 { fill:#a70b05; }
+.q0-8 { fill:#efb19c ; }
+.q1-8 { fill:#f69578; }
+.q2-8 { fill:#fb7914; }
+.q3-8 { fill:#ee612f; }
+.q4-8 { fill:#fd0000; }
+.q5-8 { fill:#df0001; }
+.q6-8 { fill:#c30002; }
+.q7-8 { fill:#a70002; }
 .q8-8 { fill:#8b0000; }
 
-
+#tooltip {
+      position: absolute;
+      width: 200px;
+      height: auto;
+      padding: 10px;
+      background-color: white;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      pointer-events: none;
+    }
 
 @font-face {
     font-family: futura-medium;
@@ -71,12 +84,12 @@ position: absolute;
 }
 
 .states {
-  fill: gray;
+  fill:#808080;
 }
 
 .state-borders {
   fill: none;
-  stroke: #d3d3d3;
+  stroke: #DCDCDC;
   stroke-width: 0.5px;
   stroke-linejoin: round;
   stroke-linecap: round;

@@ -27,6 +27,7 @@ var legend = d3.legendColor()
 svg.select(".legendQuant")
   .call(legend);
 
+console.log(legend);
 // MAP
 
 var path = d3.geoPath();
@@ -71,7 +72,7 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
 
   svg.selectAll("path")
       .on("mouseover", function(d) {
-        showToolTip(d);
+        showToolTip(d, dataByState);
   
         var state_obj = (dataByState.find(function(element) {return element.sid == d.id;})).hurricanes;
         
@@ -94,12 +95,17 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
           }
         }
         //console.log(data1);
-
-
         var pie_svg = d3.select(".chart").append("svg")
             .attr("class", "pie")
             .style("width", width)
             .style("height", height);
+            
+        // TODO: Add title to Pie Chart    
+        // pie_svg.append("text")
+        //     .attr("x", width / 2 )
+        //     .attr("y", 0)
+        //     .style("text-anchor", "middle")
+        //     .text("Title of Diagram");
 
         var g_pie = pie_svg.append('g')
         .attr('transform', 'translate(' + (width/2) + ',' + (height/2) + ')');
@@ -150,29 +156,31 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
           data1[4].value = 0;
         
           var old_pie = d3.selectAll(".pie").remove(); 
-      });
+      })
 
       .on("click", function(d) {
         //maybe brush the state?!
-      })
+      });
 });
 
-function showToolTip(d) {
-          div.transition()    
-              .duration(500)    
-              .style("opacity", .9);    
-          div .html(((dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length))
-             .style("left", (d3.event.pageX - 100) + "px")
-             .style("top", (d3.event.pageY - 20) + "px");
+function showToolTip(d, dataSet) {
+  div.transition()    
+      .duration(500)    
+      .style("opacity", .9);    
+  div .html(((dataSet.find(function(element) {return element.sid == d.id;})).hurricanes.length))
+     .style("left", (d3.event.pageX - 100) + "px")
+     .style("top", (d3.event.pageY - 20) + "px");
 }
 
 // TODO: Producing an error? Unclear why....
 function reset() {
+  // clears all checkboxes
   $('input[type=checkbox]').each(function() 
   { 
           this.checked = false; 
   }); 
 
+  // resets colors on map back to unfiltered, producing an error
   svg.selectAll("path")
       .attr("class", function(d) {
         var length = (dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length;

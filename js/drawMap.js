@@ -54,7 +54,7 @@ var color1 = d3.scaleOrdinal(d3.schemeCategory10);
 var radius = 100;
 
 
-var tooltip = d3.select("body").append("div") 
+var div = d3.select("body").append("div") 
     .attr("id", "tooltip")       
     .style("opacity", 0);
 
@@ -80,11 +80,11 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
 
   svg.selectAll("path")
       .on("mouseover", function(d) {    
-          // div.transition()    
-          //     .duration(200)    
-          //     .style("opacity", .9);    
-          // div .html(((dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length));
-          // }) 
+          div.transition()    
+              .duration(200)    
+              .style("opacity", .9);    
+          div .html(((dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length));
+         
   
         var state_obj = (dataByState.find(function(element) {return element.sid == d.id;})).hurricanes;
         
@@ -110,72 +110,69 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
         console.log(data1);
 
 
-        var pie_tip = d3.select("#tooltip").append("svg")
+        var pie_svg = d3.select(".chart").append("svg")
             .attr("class", "pie")
             .style("width", width)
             .style("height", height);
 
-        var g_pie = pie_tip.append('g')
+        var g_pie = pie_svg.append('g')
         .attr('transform', 'translate(' + (width/2) + ',' + (height/2) + ')');
 
         var arc = d3.arc()
-        .innerRadius(0)
-        .outerRadius(radius);
+          .innerRadius(0)
+          .outerRadius(radius);
 
         var pie = d3.pie()
-        .value(function(d) {return d.value; })
-        .sort(null);
+          .value(function(d) {return d.value; })
+          .sort(null);
 
         console.log("this is", this);
-        var path_pie = g_pie.selectAll('path')
+
+        var g_pie_slice = g_pie.selectAll('g')
           .data(pie(data1))
-          .enter().append("g")  
-          .append("path")
-          .attr('d', arc)
-          .attr('fill', (d,i) => color1(i))
-          .style('opacity', 1)
-          .style('stroke', 'white');
+          .enter()
+          .append("g"); 
+
+          g_pie_slice.append("path")
+            .attr('d', arc)
+            .attr('fill', (d,i) => color1(i))
+            .style('opacity', 1)
+            .style('stroke', 'white');
 
 
-          path_pie.append("text")
-          .attr("class", "name-text")
-          // .attr('text-anchor', 'middle')
-          // .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-          // .attr("dy", ".35em")
-          .attr("fill", "black")
-          
+
+
+          g_pie_slice.append("text")
+            .attr("class", "name-text")
+            .attr('text-anchor', 'middle')
+            .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+            .attr("dy", ".35em")
+            .attr("fill", "black")
+            
           
           .text(function(d){
-
             console.log(d.data.name);
             return d.data.name;
           });
           
-          
-          
-
-
-
-
-        tooltip.transition()
+        div.transition()
             .duration(200)
             .style("opacity", .9);
 
-        tooltip.style("left", (d3.event.pageX - 50) + "px")
-            .style("top", (d3.event.pageY - 70) + "px")
-            .style("display", "inline-block")
+        div.style("display", "inline-block")
             .style("position", "absolute")
-            // .html(((dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length)); 
+            .html(((dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length)); 
         
      
 
 
         })
-      
+
       .on("mouseout", function(d) {   
-          tooltip.transition()    
+          div.transition()    
               .duration(500)    
               .style("opacity", 0);
+
           data1[0].value = 0;
           data1[1].value = 0;
           data1[2].value = 0;

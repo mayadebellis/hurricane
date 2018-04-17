@@ -2,6 +2,7 @@
 <head>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/topojson.v2.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script lang="javascript" src="js/jquery-3.1.0.min.js"></script>
 <script lang="javascript" src="js/data.js"></script>
 <script lang="javascript" src="js/dataWrangle.js"></script>
@@ -12,9 +13,17 @@
 </head>
 
 <body> 
-  <h1>Hurricanes Throughout History</h1>
-  <h3>An Exploratory Visualization</h3>
-  <div class="container">
+<section class="landing-page">
+  <div class="mask">
+    <h1 class="vis-title">Hurricanes Throughout History</h1>
+    <h3 class="vis-title">An Exploratory Visualization</h3>
+    <p class="landing-text">We set out to make a visualisation about hurricanes. It quite honestly <br> some of the craziest shit in the universe. Like check out all of this text</p>
+  </div>
+</section>  
+
+
+ 
+  <div class="container vis-container">
     <div class="map">
       <svg width="1100" height="600"></svg>
     </div>

@@ -1,6 +1,8 @@
 console.log(root);
 
 var dataByState = bucketByState(root);
+console.log(dataByState);
+//var filteredData = filterByYear(dataByState, 1990, 1992);
 
 var svg = d3.select("svg");
 
@@ -65,10 +67,58 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
 
 });
 
+//
+// Filter by month
+//
+d3.selectAll(".myCheckbox").on("change",update);
+update();
+      
+function update(){
+  var choices = [];
+  d3.selectAll(".myCheckbox").each(function(d){
+    cb = d3.select(this);
+    if(cb.property("checked")){
+      choices.push(cb.property("value"));
+    }
+  });
+
+  if(choices.length > 0){
+    newData = filterMonth(dataByState, choices);
+    console.log("NEW DATA:")
+    console.log(newData);
+  } else {
+    newData = dataByState;     
+  } 
+  
+  newMap = svg.selectAll("path")
+      .attr("class", newData);
+}
+
+function filterMonth(data, choices){
+  for (var state in data) {
+    //console.log(state);
+      data[state].hurricanes.filter(function(d, i){
+            //console.log(d);
+            if(choices.includes(d.hurricane.Month)){
+              console.log("this was good");
+              return true;
+            }
+            else {
+              return false;
+            }});
+      console.log(data[state].hurricanes);
+  }
+}
+
+
+
+
+
+
+
 // AUXILIARY FUNCTIONS
 
 function bucketByState(root) {
-    //console.log("in bucket");
     var stateData = states_json;
 
     for (var i in stateData){
@@ -86,9 +136,6 @@ function bucketByState(root) {
             var temp = {};
             temp.category = root[cane].Region[st].category;
             temp.hurricane = root[cane];
-            //console.log("in fail?");
-            //console.log(temp);
-            //console.log("root[cane].Region");
 
             if (temp.category != null){
                 stateData[index].hurricanes.push(temp);
@@ -99,25 +146,40 @@ function bucketByState(root) {
     return stateData;
 }
 
+function filterByMonth(data){
+
+
+}
+
+
 //FILTER by Year
-function filterByYear(totalData, low, high){
-    var data = JSON.parse(JSON.stringify(totalData));
-    console.log(totalData);
+function filterByYear(data, low, high){
+  console.log(data);
+    // var data = JSON.parse(JSON.stringify(totalData));
+    // console.log(totalData);
+    console.log("low = ", low);
+    console.log("high = ", high);
 
 
 
     for (var state in data){
-
+        //console.log("i = ", state);
         for (var j in data[state].hurricanes){
+            console.log("j = ", j);
             var year = data[state].hurricanes[j].hurricane.Year;
             //console.log(year);
-            if (year < low || year > high){
-                console.log("BEFORE", data[state].hurricanes);
+            if ((year < low) || (year > high)){
+                //console.log(year);
+                //console.log("BEFORE", data[state].hurricanes);
                 data[state].hurricanes.splice(j, 1);
-                console.log("AFTER", data[state].hurricanes);
+                //console.log("AFTER", data[state].hurricanes);
+            }
+            else {
+              console.log("in range! year = ", year)
             }
         }
     }
+    console.log(data);
     return data;
 }
 

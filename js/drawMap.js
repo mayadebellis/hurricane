@@ -74,7 +74,7 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
       .attr("class", function(d) {
         var length = (dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length;
         if (length > 0)
-          return quantize(length)});
+          return quantize(length) + " state"});
 
   svg.append("path")
       .attr("class", "state-borders")
@@ -219,6 +219,10 @@ function update(){
 }
 
 function filterMonth(data, choices){
+
+  var filtered = dataByState.filter(function(x){
+    return x.genre.indexOf(genre) > -1;
+  });
   for (var state in data) {
     //console.log(state);
       data[state].hurricanes.filter(function(d, i){

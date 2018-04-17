@@ -44,11 +44,11 @@ var width = 200;
 var text = "";
 var height = 200;
 var data1 = [
-  {name: "Level 1", value: 0},
-  {name: "Level 2", value: 0},
-  {name: "Level 3", value: 0},
-  {name: "Level 4", value: 0},
-  {name: "Level 5", value: 0},
+  {name: "Category 1", value: 0},
+  {name: "Category 2", value: 0},
+  {name: "Category 3", value: 0},
+  {name: "Category 4", value: 0},
+  {name: "Category 5", value: 0},
 ];
 var color1 = d3.scaleOrdinal(d3.schemeCategory10);
 var radius = 100;
@@ -57,10 +57,6 @@ var radius = 100;
 var div = d3.select("body").append("div") 
     .attr("id", "tooltip")       
     .style("opacity", 0);
-
-
-
-
 
 d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
   if (error) throw error;
@@ -91,7 +87,6 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
   
         var state_obj = (dataByState.find(function(element) {return element.sid == d.id;})).hurricanes;
         
-
         for (var i = 0; state_obj.length > i; i++){
           if (state_obj[i].category == 1){
             data1[0].value += 1;
@@ -142,9 +137,6 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
             .style('opacity', 1)
             .style('stroke', 'white');
 
-
-
-
           g_pie_slice.append("text")
             .attr("class", "name-text")
             .attr('text-anchor', 'middle')
@@ -152,7 +144,6 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
             .attr("dy", ".35em")
             .attr("fill", "black")
             
-          
           .text(function(d){
             console.log(d.data.name);
             return d.data.name;
@@ -165,10 +156,6 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
         div.style("display", "inline-block")
             .style("position", "absolute")
             .html(((dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length)); 
-        
-     
-
-
         })
 
       .on("mouseout", function(d) {   
@@ -183,11 +170,24 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
           data1[4].value = 0;
         
           var old_pie = d3.selectAll(".pie").remove(); 
-      
       });
-  d3.selectAll(".myCheckbox").on("change",update);
-  update();
 });
+
+
+// TODO: Producing an error? Unclear why....
+function reset() {
+  $('input[type=checkbox]').each(function() 
+  { 
+          this.checked = false; 
+  }); 
+
+  svg.selectAll("path")
+      .attr("class", function(d) {
+        var length = (dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length;
+          if (length > 0)
+            return quantize(length) + " state"});
+}
+
 //
 // Filter by month
 //
@@ -233,12 +233,6 @@ function filterMonth(oldData, choices){
   }
   return data;
 }
-
-
-
-
-
-
 
 // AUXILIARY FUNCTIONS
 

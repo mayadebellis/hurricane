@@ -261,6 +261,10 @@ ul {
   width: 100px;
 }
 
+.filter_btn:focus {outline:0;}
+
+.filter_btn:hover {opacity: 0.75}
+
 .filter_btn {
   margin-left: auto;
   padding: 8px 16px;

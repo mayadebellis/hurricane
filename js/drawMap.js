@@ -2,8 +2,8 @@ console.log(root);
 
 var dataByState = bucketByState(root);
 console.log(dataByState);
-//var filteredData = filterByYear(dataByState, 1990, 1992);
-
+// var filteredData = filterByYear(dataByState, 1990, 1992);
+// console.log(filteredData);
 var svg = d3.select("svg");
 
 // SETTING ORDINAL COLORS
@@ -64,15 +64,12 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
               .duration(500)    
               .style("opacity", 0); 
       });
-
+  d3.selectAll(".myCheckbox").on("change",update);
+  update();
 });
-
 //
 // Filter by month
 //
-d3.selectAll(".myCheckbox").on("change",update);
-update();
-      
 function update(){
   var choices = [];
   d3.selectAll(".myCheckbox").each(function(d){
@@ -82,6 +79,8 @@ function update(){
     }
   });
 
+  console.log("choices:", choices)
+
   if(choices.length > 0){
     newData = filterMonth(dataByState, choices);
     console.log("NEW DATA:")
@@ -90,24 +89,23 @@ function update(){
     newData = dataByState;     
   } 
   
-  newMap = svg.selectAll("path")
-      .attr("class", newData);
+  // Redraw map!!
+  svg.selectAll(".state")
+      .attr("class", function(d) {return quantize((newData.find(function(element) {return element.sid == d.id;})).hurricanes.length)});
 }
 
-function filterMonth(data, choices){
-  for (var state in data) {
-    //console.log(state);
-      data[state].hurricanes.filter(function(d, i){
-            //console.log(d);
-            if(choices.includes(d.hurricane.Month)){
-              console.log("this was good");
-              return true;
-            }
-            else {
-              return false;
-            }});
-      console.log(data[state].hurricanes);
+function filterMonth(oldData, choices){
+  var data = JSON.parse(JSON.stringify(oldData));
+  
+  for (var i = 0; i < data.length; i++) {
+      var newData = data[i].hurricanes.filter(function(d, i){
+            //console.log("to return:")
+            //console.log(choices.includes(d.hurricane.Month));
+            return choices.includes(d.hurricane.Month);
+      });
+      data[i].hurricanes = newData;
   }
+  return data;
 }
 
 
@@ -146,10 +144,6 @@ function bucketByState(root) {
     return stateData;
 }
 
-function filterByMonth(data){
-
-
-}
 
 
 //FILTER by Year
@@ -165,7 +159,7 @@ function filterByYear(data, low, high){
     for (var state in data){
         //console.log("i = ", state);
         for (var j in data[state].hurricanes){
-            console.log("j = ", j);
+            //console.log("j = ", j);
             var year = data[state].hurricanes[j].hurricane.Year;
             //console.log(year);
             if ((year < low) || (year > high)){
@@ -175,7 +169,7 @@ function filterByYear(data, low, high){
                 //console.log("AFTER", data[state].hurricanes);
             }
             else {
-              console.log("in range! year = ", year)
+              //console.log("in range! year = ", year)
             }
         }
     }

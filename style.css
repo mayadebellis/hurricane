@@ -52,10 +52,9 @@ body {
   margin-bottom: 0px;
 }
 
-
-.states :hover {
+/*.states :hover {
   opacity: 0.75;
-}
+}*/
 
 .states {
   fill:#808080;

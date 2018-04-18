@@ -77,7 +77,14 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
         showToolTip(d, currDataSet);
   
         var state_obj = (currDataSet.find(function(element) {return element.sid == d.id;})).hurricanes;
-        
+
+      d3.selectAll(".state")
+        .style("opacity", 0.40);
+
+      d3.selectAll(".state")
+        .filter(function(elem) {return elem.id == d.id;})
+        .style("opacity", 1);
+
         for (var i = 0; state_obj.length > i; i++){
           if (state_obj[i].category == 1){
             data1[0].value += 1;
@@ -211,10 +218,15 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
 
 
       .on("mouseout", function(d) {   
+        d3.selectAll(".state")
+          .style("opacity", 1);
+
+        // for state tool tip
           div.transition()    
               .duration(500)    
               .style("opacity", 0);
 
+        // for pie chart
           data1[0].value = 0;
           data1[1].value = 0;
           data1[2].value = 0;
@@ -227,6 +239,8 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
 
       .on("click", function(d) {
         //TODO @Ballard - when you click two states both pie charts will show up 
+
+        
       });
 });
 

@@ -118,7 +118,7 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
           .value(function(d) {return d.value; })
           .sort(null);
 
-        //console.log("this is", this);
+        
 
         var g_pie_slice = g_pie.selectAll('g')
           .data(pie(data1))

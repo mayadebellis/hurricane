@@ -2,6 +2,7 @@ console.log(root);
 
 var dataByState = bucketByState(root);
 var currDataSet = dataByState;
+var selectedStates = [];
 
 var startYear = 1851;
 var endYear = 2016;
@@ -29,10 +30,16 @@ var legend = d3.legendColor()
 svg.select(".legendQuant")
   .call(legend);
 
-
 // MAP
 
 var path = d3.geoPath();
+
+$(".map").not("path").on("click", function (e) {
+  if (e.target.nodeName != "path") {
+    d3.selectAll(".state")
+      .style("opacity", 1);
+  }
+});
 
 // pie chart
 var width = 230;
@@ -78,12 +85,13 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
   
         var state_obj = (currDataSet.find(function(element) {return element.sid == d.id;})).hurricanes;
 
-      d3.selectAll(".state")
-        .style("opacity", 0.40);
+        d3.selectAll(".state")
+          .filter(function(elem) {return !(selectedStates.includes(elem.id));})
+          .style("opacity", 0.40);
 
-      d3.selectAll(".state")
-        .filter(function(elem) {return elem.id == d.id;})
-        .style("opacity", 1);
+        d3.selectAll(".state")
+          .filter(function(elem) {return elem.id == d.id;})
+          .style("opacity", 1);
 
         for (var i = 0; state_obj.length > i; i++){
           if (state_obj[i].category == 1){
@@ -200,26 +208,31 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
         var pos = arc.centroid(d);
             pos[0] = radius * 0.95 * (midAngle(d) < Math.PI ? 1 : -1);
          var o=   arc.centroid(d)
- var percent = (d.endAngle -d.startAngle)/(2*Math.PI)*100
-       if(percent<3){
-       //console.log(percent)
-       o[1] 
-       pos[1] += i*15
-       }
-       //return [label.centroid(d),[o[0],0[1]] , pos];
-        return [label.centroid(d),[o[0],pos[1]] , pos];
-      })
-      .style("fill", "none")
-      //.attr('stroke','grey')
-      .attr("stroke", function(d,i) { return color1(i); })
-      .style("stroke-width", "1px");
+     var percent = (d.endAngle -d.startAngle)/(2*Math.PI)*100
+           if(percent<3){
+           //console.log(percent)
+           o[1] 
+           pos[1] += i*15
+           }
+           //return [label.centroid(d),[o[0],0[1]] , pos];
+            return [label.centroid(d),[o[0],pos[1]] , pos];
+          })
+          .style("fill", "none")
+          //.attr('stroke','grey')
+          .attr("stroke", function(d,i) { return color1(i); })
+          .style("stroke-width", "1px");
 
   })
-
-
-      .on("mouseout", function(d) {   
+      .on("mouseout", function(d) {  
+        // brushing
         d3.selectAll(".state")
-          .style("opacity", 1);
+            .filter(function(elem) {return !selectedStates.includes(elem.id);})
+            .style("opacity", 0.4);
+
+        if (selectedStates.length == 0) {
+          d3.selectAll(".state")
+            .style("opacity", 1);
+        } 
 
         // for state tool tip
           div.transition()    
@@ -238,10 +251,28 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
       })
 
       .on("click", function(d) {
-        //TODO @Ballard - when you click two states both pie charts will show up 
+        // brushing
+        if (!selectedStates.includes(d.id)) {
+          selectedStates.push(d.id);
+        } else {
+          var i = selectedStates.indexOf(d.id);
+          if (i > -1) {
+            selectedStates.splice(i, 1);
+          }
+        }
 
-        
-      });
+        d3.selectAll(".state")
+          .style("opacity", 0.40);
+
+        d3.selectAll(".state")
+          .filter(function(elem) {return selectedStates.includes(elem.id);})
+          .style("opacity", 1);
+
+        console.log(selectedStates)
+        });
+
+        //TODO @Ballard - when you click two states both pie charts will show up
+
 });
 
 function showToolTip(d, dataSet) {

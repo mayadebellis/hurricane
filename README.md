@@ -7,11 +7,9 @@
 
 - fix brushing on states
 	- on hover:
-		- grey out rest a little bit and keep opacity of original state
 		- have pie chart appear 
 	- on click:
 		- keep pie chart
-		- keep color not greyed when hovering on other states
 
 	- to remove states:
 		- click a state again (maybe an x in pie chart as well)

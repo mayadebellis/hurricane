@@ -23,7 +23,7 @@ svg.append("g")
 var legend = d3.legendColor()
   .labelFormat(d3.format(".0f"))
   .useClass(true)
-  .title("Aggregate Total of Hurricanes")
+  .title("Total Number of Hurricanes")
   .titleWidth(100)
   .scale(quantize);
 
@@ -236,7 +236,7 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
 
         // for state tool tip
           div.transition()    
-              .duration(500)    
+              .duration(400)    
               .style("opacity", 0);
 
         // for pie chart
@@ -277,11 +277,11 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
 
 function showToolTip(d, dataSet) {
   div.transition()    
-      .duration(500)    
+      .duration(250)    
       .style("opacity", .9);    
   div .html(((dataSet.find(function(element) {return element.sid == d.id;})).hurricanes.length))
-     .style("left", (d3.event.pageX - 100) + "px")
-     .style("top", (d3.event.pageY - 20) + "px");
+     .style("left", "525px")
+     .style("top", "1125px");
 }
 
 
@@ -297,7 +297,7 @@ function reset() {
   var legend = d3.legendColor()
     .labelFormat(d3.format(".0f"))
     .useClass(true)
-    .title("Aggregate Total of Hurricanes")
+    .title("Total Number of Hurricanes")
     .titleWidth(100)
     .scale(quantize);
 

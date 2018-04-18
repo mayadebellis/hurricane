@@ -52,7 +52,7 @@ var svgFilter = d3.select("#byYear");
       .text(function(d) { return d; });
   var handle1 = sliderYearFirst.insert("circle", ".track-overlay")
       .attr("class", "handle")
-      .attr("cx",0)
+      .attr("cx", xYearFirst(1851))
       .attr("r", 9);
   
   sliderYearLast.insert("g", ".track-overlay")
@@ -66,7 +66,7 @@ var svgFilter = d3.select("#byYear");
       .text(function(d) { return d; });
   var handle2 = sliderYearLast.insert("circle", ".track-overlay")
       .attr("class", "handle")
-      .attr("cx",0)
+      .attr("cx", xYearFirst(2016))
       .attr("r", 9);
 
   // move second slider in the begin to demonstrate interactive possibility      

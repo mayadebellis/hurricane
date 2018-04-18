@@ -259,6 +259,9 @@ function reset() {
   svg.select(".legendQuant")
     .call(legend);
 
+    handle1.attr("cx", xYearFirst(1851));
+    handle2.attr("cx", xYearFirst(2016));
+
 
   // resets colors on map back to unfiltered
   svg.selectAll(".state")
@@ -296,7 +299,7 @@ function update(){
   currDataSet = newData;
 
 
-  console.log(newData)
+
   // TODO:: dont hard code domain
   var tempDomain = [];
   for (var st in newData) {
@@ -306,8 +309,11 @@ function update(){
 
 
   var filteredQuantize = quantize.copy();
-  console.log(filteredQuantize);
-    filteredQuantize.domain([0, maxD]);
+  filteredQuantize.domain([0, maxD]);
+
+  if (maxD < 8 && maxD > 0) {
+    filteredQuantize.range(d3.range(maxD).map(function(i) { return "q" + i + "-8"; }));
+  }
 
   var filteredLegend = d3.legendColor()
     .labelFormat(d3.format(".0f"))
@@ -354,7 +360,7 @@ function filterYear(oldData, low, high){
       var newData = data[i].hurricanes.filter(function(d, i){
             ////console.log("to return:")
             ////console.log(choices.includes(d.hurricane.Month));
-            return ((d.hurricane.Year > low) && (d.hurricane.Year < high));
+            return ((d.hurricane.Year >= low) && (d.hurricane.Year <= high));
       });
       data[i].hurricanes = newData;
   }

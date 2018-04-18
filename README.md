@@ -1,3 +1,36 @@
+## New 4/18
+
+# Functionality:
+
+- filtering:
+	- tooltips and legend to update with filters
+	- year sliders update to correct postion on start and reset
+	- reset all bug
+	- update pie chart etc with correct data
+
+
+- fix brushing on states
+	- on hover:
+		- grey out rest a little bit and keep opacity of original state
+		- have pie chart appear 
+	- on click:
+		- keep pie chart
+		- keep color not greyed when hovering on other states
+
+	- to remove states:
+		- click a state again (maybe an x in pie chart as well)
+		- if no state selected, make all "selected" (show full color)
+
+- Pie chart:
+	- Be able to compare two states
+	- On hover, show percentage or number of category 1s etc
+
+
+
+
+
+
+
 # hurricane
 
 ## TO-DO

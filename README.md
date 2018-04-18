@@ -3,8 +3,6 @@
 # Functionality:
 
 - filtering:
-	- tooltips and legend to update with filters
-
 	- MAYA year sliders update to correct postion on start and reset
 	- MAYA update pie chart etc with correct data
 

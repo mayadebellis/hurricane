@@ -1,8 +1,10 @@
 console.log(root);
 
 var dataByState = bucketByState(root);
-var startYear = 1850;
-var endYear = 2017;
+var currDataSet = dataByState;
+
+var startYear = 1851;
+var endYear = 2016;
 
 var svg = d3.select("svg");
 
@@ -60,7 +62,7 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
       .enter().append("path")
       .attr("d", path)
       .attr("class", function(d) {
-        var length = (dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length;
+        var length = (currDataSet.find(function(element) {return element.sid == d.id;})).hurricanes.length;
         if (length > 0)
           return quantize(length) + " state"
         else
@@ -72,9 +74,9 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
 
   svg.selectAll("path")
       .on("mouseover", function(d) {
-        showToolTip(d, dataByState);
+        showToolTip(d, currDataSet);
   
-        var state_obj = (dataByState.find(function(element) {return element.sid == d.id;})).hurricanes;
+        var state_obj = (currDataSet.find(function(element) {return element.sid == d.id;})).hurricanes;
         
         for (var i = 0; state_obj.length > i; i++){
           if (state_obj[i].category == 1){
@@ -245,6 +247,19 @@ function reset() {
           this.checked = false; 
   }); 
 
+  currDataSet = dataByState;
+
+  var legend = d3.legendColor()
+    .labelFormat(d3.format(".0f"))
+    .useClass(true)
+    .title("Aggregate Total of Hurricanes")
+    .titleWidth(100)
+    .scale(quantize);
+
+  svg.select(".legendQuant")
+    .call(legend);
+
+
   // resets colors on map back to unfiltered
   svg.selectAll(".state")
       .attr("class", function(d) {
@@ -268,8 +283,6 @@ function update(){
     }
   });
 
-  //console.log("choices:", choices)
-
   if(choices.length > 0){
     newData = filterMonth(dataByState, choices);
     //console.log("NEW DATA:")
@@ -278,20 +291,43 @@ function update(){
     newData = dataByState;     
   } 
 
-  // TODO:: link this with slider!!
-
   //Filter years
   newData = filterYear(newData, startYear, endYear);
+  currDataSet = newData;
 
-  
+
+  console.log(newData)
+  // TODO:: dont hard code domain
+  var tempDomain = [];
+  for (var st in newData) {
+    tempDomain.push(newData[st].hurricanes.length);
+  }
+  var maxD = Math.max.apply(Math, tempDomain);
+
+
+  var filteredQuantize = quantize.copy();
+  console.log(filteredQuantize);
+    filteredQuantize.domain([0, maxD]);
+
+  var filteredLegend = d3.legendColor()
+    .labelFormat(d3.format(".0f"))
+    .useClass(true)
+    .title("Aggregate Total of Hurricanes")
+    .titleWidth(100)
+    .scale(filteredQuantize);
+
+  svg.select(".legendQuant")
+    .call(filteredLegend);
+
   // Redraw map!!
   svg.selectAll(".state")
       .attr("class", function(d) {
         var length = (newData.find(function(element) {return element.sid == d.id;})).hurricanes.length;
         if (length > 0)
-          return quantize(length) + " state"
+          return filteredQuantize(length) + " state"
               else
           return "state"});
+
 
 }
 

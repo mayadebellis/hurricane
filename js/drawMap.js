@@ -1,9 +1,9 @@
 console.log(root);
 
 var dataByState = bucketByState(root);
-//console.log(dataByState);
-// var filteredData = filterByYear(dataByState, 1990, 1992);
-// //console.log(filteredData);
+var startYear = 1850;
+var endYear = 2017;
+
 var svg = d3.select("svg");
 
 // SETTING ORDINAL COLORS
@@ -255,6 +255,7 @@ function reset() {
 // Filter by month
 //
 function update(){
+  //Filter months
   var choices = [];
   d3.selectAll(".myCheckbox").each(function(d){
     cb = d3.select(this);
@@ -272,6 +273,12 @@ function update(){
   } else {
     newData = dataByState;     
   } 
+
+  // TODO:: link this with slider!!
+
+  //Filter years
+  newData = filterYear(newData, startYear, endYear);
+
   
   // Redraw map!!
   svg.selectAll(".state")
@@ -296,6 +303,24 @@ function filterMonth(oldData, choices){
   }
   return data;
 }
+
+
+function filterYear(oldData, low, high){
+  var data = JSON.parse(JSON.stringify(oldData));
+  
+  for (var i = 0; i < data.length; i++) {
+      var newData = data[i].hurricanes.filter(function(d, i){
+            ////console.log("to return:")
+            ////console.log(choices.includes(d.hurricane.Month));
+            return ((d.hurricane.Year > low) && (d.hurricane.Year < high));
+      });
+      data[i].hurricanes = newData;
+  }
+  return data;
+
+}
+
+
 
 // AUXILIARY FUNCTIONS
 
@@ -327,36 +352,4 @@ function bucketByState(root) {
     return stateData;
 }
 
-
-
-//FILTER by Year
-function filterByYear(data, low, high){
-  //console.log(data);
-    // var data = JSON.parse(JSON.stringify(totalData));
-    // //console.log(totalData);
-    //console.log("low = ", low);
-    //console.log("high = ", high);
-
-
-
-    for (var state in data){
-        ////console.log("i = ", state);
-        for (var j in data[state].hurricanes){
-            ////console.log("j = ", j);
-            var year = data[state].hurricanes[j].hurricane.Year;
-            ////console.log(year);
-            if ((year < low) || (year > high)){
-                ////console.log(year);
-                ////console.log("BEFORE", data[state].hurricanes);
-                data[state].hurricanes.splice(j, 1);
-                ////console.log("AFTER", data[state].hurricanes);
-            }
-            else {
-              ////console.log("in range! year = ", year)
-            }
-        }
-    }
-    //console.log(data);
-    return data;
-}
 

@@ -78,8 +78,7 @@ var svgFilter = d3.select("#byYear");
   //     }); 
   
   function setHandle1(h) {
-    //NEEDSWORK:: USE THIS YEAR
-    console.log(Math.round(h));
+    startYear = Math.round(h);
     if (handle2.attr("cx") < xYearFirst(h)) {
       handle1.attr("cx", handle2.attr("cx"));
     } else {
@@ -90,8 +89,7 @@ var svgFilter = d3.select("#byYear");
     //console.log("hue1", "cx: ",xYearFirst(h),", year:",h);
   }
   function setHandle2(h) {
-    //NEEDSWORK:: USE THIS YEAR
-    console.log(Math.round(h));
+    endYear = Math.round(h);
     if (handle1.attr("cx") > xYearFirst(h)) {
       handle2.attr("cx", handle1.attr("cx"));
     } else {

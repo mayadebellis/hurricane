@@ -4,9 +4,9 @@
 
 - filtering:
 	- tooltips and legend to update with filters
-	- year sliders update to correct postion on start and reset
-	- reset all bug
-	- update pie chart etc with correct data
+
+	- MAYA year sliders update to correct postion on start and reset
+	- MAYA update pie chart etc with correct data
 
 
 - fix brushing on states

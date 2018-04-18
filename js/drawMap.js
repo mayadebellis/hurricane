@@ -27,7 +27,7 @@ var legend = d3.legendColor()
 svg.select(".legendQuant")
   .call(legend);
 
-console.log(legend);
+
 // MAP
 
 var path = d3.geoPath();
@@ -62,7 +62,9 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
       .attr("class", function(d) {
         var length = (dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length;
         if (length > 0)
-          return quantize(length) + " state"});
+          return quantize(length) + " state"
+        else
+          return "state"});
 
   svg.append("path")
       .attr("class", "state-borders")
@@ -235,7 +237,7 @@ function showToolTip(d, dataSet) {
      .style("top", (d3.event.pageY - 20) + "px");
 }
 
-// TODO: Producing an error? Unclear why....
+
 function reset() {
   // clears all checkboxes
   $('input[type=checkbox]').each(function() 
@@ -243,12 +245,14 @@ function reset() {
           this.checked = false; 
   }); 
 
-  // resets colors on map back to unfiltered, producing an error
-  svg.selectAll("path")
+  // resets colors on map back to unfiltered
+  svg.selectAll(".state")
       .attr("class", function(d) {
         var length = (dataByState.find(function(element) {return element.sid == d.id;})).hurricanes.length;
           if (length > 0)
-            return quantize(length) + " state"});
+            return quantize(length) + " state"
+          else
+            return "state"});
 }
 
 //
@@ -285,7 +289,9 @@ function update(){
       .attr("class", function(d) {
         var length = (newData.find(function(element) {return element.sid == d.id;})).hurricanes.length;
         if (length > 0)
-          return quantize(length) + " state"});
+          return quantize(length) + " state"
+              else
+          return "state"});
 
 }
 

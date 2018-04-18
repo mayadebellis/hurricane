@@ -1,5 +1,6 @@
-console.log(root);
-
+/*******************************************************************
+   Important vars
+*******************************************************************/
 var dataByState = bucketByState(root);
 var currDataSet = dataByState;
 
@@ -22,7 +23,7 @@ svg.append("g")
 var legend = d3.legendColor()
   .labelFormat(d3.format(".0f"))
   .useClass(true)
-  .title("Aggregate Total of Hurricanes")
+  .title("Total Number of Hurricanes to Make Landfall")
   .titleWidth(100)
   .scale(quantize);
 
@@ -31,7 +32,6 @@ svg.select(".legendQuant")
 
 
 // MAP
-
 var path = d3.geoPath();
 
 // pie chart
@@ -239,7 +239,9 @@ function showToolTip(d, dataSet) {
      .style("top", (d3.event.pageY - 20) + "px");
 }
 
-
+/*******************************************************************
+    Reverts all changes to data and viz from filtering to defaults
+*******************************************************************/
 function reset() {
   // clears all checkboxes
   $('input[type=checkbox]').each(function() 
@@ -247,21 +249,23 @@ function reset() {
           this.checked = false; 
   }); 
 
+  // Resets data
   currDataSet = dataByState;
 
+  // Resets legend
   var legend = d3.legendColor()
     .labelFormat(d3.format(".0f"))
     .useClass(true)
-    .title("Aggregate Total of Hurricanes")
+    .title("Total Number of Hurricanes to Make Landfall")
     .titleWidth(100)
     .scale(quantize);
 
   svg.select(".legendQuant")
     .call(legend);
 
-    handle1.attr("cx", xYearFirst(1851));
-    handle2.attr("cx", xYearFirst(2016));
-
+  // Resets where slider circles appear
+  handle1.attr("cx", xYearFirst(1851));
+  handle2.attr("cx", xYearFirst(2016));
 
   // resets colors on map back to unfiltered
   svg.selectAll(".state")
@@ -273,11 +277,13 @@ function reset() {
             return "state"});
 }
 
-//
-// Filter by month
-//
+/*******************************************************************
+    Updates all changes to data and viz from filtering
+*******************************************************************/
 function update(){
-  //Filter months
+  //
+  // Filter months
+  //
   var choices = [];
   d3.selectAll(".myCheckbox").each(function(d){
     cb = d3.select(this);
@@ -288,25 +294,24 @@ function update(){
 
   if(choices.length > 0){
     newData = filterMonth(dataByState, choices);
-    //console.log("NEW DATA:")
-    //console.log(newData);
   } else {
     newData = dataByState;     
   } 
 
-  //Filter years
+  //
+  // Filter years
+  //
   newData = filterYear(newData, startYear, endYear);
+
+  // Change the current dataset being used in tooltips etc
   currDataSet = newData;
 
-
-
-  // TODO:: dont hard code domain
+  //
+  // Update legend
+  //
   var tempDomain = [];
-  for (var st in newData) {
-    tempDomain.push(newData[st].hurricanes.length);
-  }
+  for (var st in newData) { tempDomain.push(newData[st].hurricanes.length); }
   var maxD = Math.max.apply(Math, tempDomain);
-
 
   var filteredQuantize = quantize.copy();
   filteredQuantize.domain([0, maxD]);
@@ -318,10 +323,11 @@ function update(){
   var filteredLegend = d3.legendColor()
     .labelFormat(d3.format(".0f"))
     .useClass(true)
-    .title("Aggregate Total of Hurricanes")
+    .title("Total Number of Hurricanes to Make Landfall")
     .titleWidth(100)
     .scale(filteredQuantize);
 
+  // Update values for colors
   svg.select(".legendQuant")
     .call(filteredLegend);
 
@@ -333,44 +339,14 @@ function update(){
           return filteredQuantize(length) + " state"
               else
           return "state"});
-
-
-}
-
-
-function filterMonth(oldData, choices){
-  var data = JSON.parse(JSON.stringify(oldData));
-  
-  for (var i = 0; i < data.length; i++) {
-      var newData = data[i].hurricanes.filter(function(d, i){
-            ////console.log("to return:")
-            ////console.log(choices.includes(d.hurricane.Month));
-            return choices.includes(d.hurricane.Month);
-      });
-      data[i].hurricanes = newData;
-  }
-  return data;
-}
-
-
-function filterYear(oldData, low, high){
-  var data = JSON.parse(JSON.stringify(oldData));
-  
-  for (var i = 0; i < data.length; i++) {
-      var newData = data[i].hurricanes.filter(function(d, i){
-            ////console.log("to return:")
-            ////console.log(choices.includes(d.hurricane.Month));
-            return ((d.hurricane.Year >= low) && (d.hurricane.Year <= high));
-      });
-      data[i].hurricanes = newData;
-  }
-  return data;
-
 }
 
 
 
-// AUXILIARY FUNCTIONS
+
+
+
+// AUXILIARY and FILTERING FUNCTIONS
 
 function bucketByState(root) {
     var stateData = states_json;
@@ -378,7 +354,6 @@ function bucketByState(root) {
     for (var i in stateData){
         stateData[i].hurricanes = [];
     }
-
     //for each hurricane
     for (var cane in root) {
         //and each state that it hit
@@ -396,8 +371,32 @@ function bucketByState(root) {
             }
         }
     }
-    ////console.log(stateData);
     return stateData;
+}
+
+function filterMonth(oldData, choices){
+  var data = JSON.parse(JSON.stringify(oldData));
+  
+  for (var i = 0; i < data.length; i++) {
+      var newData = data[i].hurricanes.filter(function(d, i){
+                      return choices.includes(d.hurricane.Month);
+      });
+      data[i].hurricanes = newData;
+  }
+  return data;
+}
+
+
+function filterYear(oldData, low, high){
+  var data = JSON.parse(JSON.stringify(oldData));
+  
+  for (var i = 0; i < data.length; i++) {
+      var newData = data[i].hurricanes.filter(function(d, i){
+                      return ((d.hurricane.Year >= low) && (d.hurricane.Year <= high));
+      });
+      data[i].hurricanes = newData;
+  }
+  return data;
 }
 
 

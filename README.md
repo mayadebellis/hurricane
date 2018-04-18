@@ -2,9 +2,6 @@
 
 # Functionality:
 
-- filtering:
-	- MAYA year sliders update to correct postion on start and reset
-
 - fix brushing on states
 	- on hover:
 		- grey out rest a little bit and keep opacity of original state
@@ -22,6 +19,7 @@
 	- On hover, show percentage or number of category 1s etc
 
 
+# Design:
 
 
 

@@ -4,8 +4,6 @@
 
 - filtering:
 	- MAYA year sliders update to correct postion on start and reset
-	- MAYA update pie chart etc with correct data
-
 
 - fix brushing on states
 	- on hover:

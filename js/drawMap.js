@@ -280,8 +280,8 @@ function showToolTip(d, dataSet) {
       .duration(250)    
       .style("opacity", .9);    
   div .html(((dataSet.find(function(element) {return element.sid == d.id;})).hurricanes.length))
-     .style("left", "525px")
-     .style("top", "1125px");
+     .style("left", $(".legendQuant").offset().left - 50+ "px")
+     .style("top", $(".legendQuant").offset().top + 225 + "px");
 }
 
 

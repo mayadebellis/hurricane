@@ -3,7 +3,6 @@ console.log(root);
 var dataByState = bucketByState(root);
 var currDataSet = dataByState;
 var selectedStates = [];
-var clicked1 = false;
 var startYear = 1851;
 var endYear = 2016;
 
@@ -18,8 +17,12 @@ var data1 = [
   {name: "Category 4", value: 0},
   {name: "Category 5", value: 0},
 ];
+
+// last color is category 5
 // var color1 = ["#FF2323","#FF8D1C", "#FFC140", "#FFFF32", "#BCFF59"];
-var color1 = ["#BCFF59","#FFFF32","#FFC140","#FF8D1C", "#FF2323" ];
+// var color1 = ["#BCFF59","#FFFF32","#FFC140","#FF8D1C", "#FF2323" ];
+
+var color1 = ["#FF4E00", "#E80000", "#B80C09", "#7D0037", "#4C061D"];
 var radius = 50;
 
 var svg = d3.select("svg");
@@ -99,8 +102,12 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
         d3.selectAll(".state")
           .filter(function(elem) {return elem.id == d.id;})
           .style("opacity", 1);
+      
 
-    drawPie(d);
+      if (!selectedStates.includes(d.id) && selectedStates.length < 2){ 
+            drawPie(d);
+          } 
+        
 
   })
       .on("mouseout", function(d) {  
@@ -362,12 +369,15 @@ function drawPie (d){
             .style("width", width)
             .style("height", height);
             
+        
+        var state_name = (states_json.find(function(elem) { if (d.id == elem.sid) return elem.name;})).name;
+
         // TODO: Add title to Pie Chart    
-        // pie_svg.append("text")
-        //     .attr("x", width / 2 )
-        //     .attr("y", 0)
-        //     .style("text-anchor", "middle")
-        //     .text("Title of Diagram");
+        pie_svg.append("text")
+            .attr("x", width / 2 )
+            .attr("y", 40)
+            .style("text-anchor", "middle")
+            .text(state_name);
 
       
         var g_pie = pie_svg.append('g')

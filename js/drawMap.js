@@ -18,7 +18,8 @@ var data1 = [
   {name: "Category 4", value: 0},
   {name: "Category 5", value: 0},
 ];
-var color1 = d3.scaleOrdinal(d3.schemeCategory10);
+// var color1 = ["#FF2323","#FF8D1C", "#FFC140", "#FFFF32", "#BCFF59"];
+var color1 = ["#BCFF59","#FFFF32","#FFC140","#FF8D1C", "#FF2323" ];
 var radius = 50;
 
 var svg = d3.select("svg");
@@ -99,7 +100,7 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
           .filter(function(elem) {return elem.id == d.id;})
           .style("opacity", 1);
 
-    // drawPie(d);
+    drawPie(d);
 
   })
       .on("mouseout", function(d) {  
@@ -124,17 +125,21 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
           data1[2].value = 0;
           data1[3].value = 0;
           data1[4].value = 0;
-          
+          console.log(d);
+
           //Clears old pie chart when not hovering
-          // var old_pie = d3.selectAll(".pie").remove(); 
+          if (!selectedStates.includes(d.id)){ 
+            var id = "#pie" + d.id;
+            d3.selectAll(id).remove();
+          } 
       })
 
       .on("click", function(d) {
         // brushing
         if (!selectedStates.includes(d.id)) {
           selectedStates.push(d.id);
-          drawPie(d);
-          console.log("1", selectedStates);
+          // drawPie(d);
+          
         } else {
           var i = selectedStates.indexOf(d.id);
           if (i > -1) {
@@ -390,7 +395,7 @@ function drawPie (d){
 
           g_pie_slice.append("path")
             .attr('d', arc)
-            .attr('fill', (d,i) => color1(i))
+            .attr('fill', (d,i) => color1[i])
             .style('opacity', 1)
             .style('stroke', 'white');
 
@@ -428,7 +433,7 @@ function drawPie (d){
           return d.data.name;
         }
          })
-      .attr("fill", function(d,i) { return color1(i); })
+      .attr("fill", "#333")
       .attr("text-anchor", 'left')
       .attr("dx", function(d){
       var ac = midAngle(d) < Math.PI ? 0:-50
@@ -462,7 +467,7 @@ function drawPie (d){
           })
           .style("fill", "none")
           //.attr('stroke','grey')
-          .attr("stroke", function(d,i) { return color1(i); })
+          .attr("stroke", function(d,i) { return color1[i]; })
           .style("stroke-width", function(d,i){
             if (d.value > 0){
               return "1px";

@@ -2,24 +2,13 @@
 
 # Functionality:
 
-- filtering:
-	- MAYA year sliders update to correct postion on start and reset
-
 - fix brushing on states
-	- on hover:
-		- have pie chart appear 
-	- on click:
-		- keep pie chart
-
-	- to remove states:
-		- click a state again (maybe an x in pie chart as well)
-		- if no state selected, make all "selected" (show full color)
 
 - Pie chart:
-	- Be able to compare two states
 	- On hover, show percentage or number of category 1s etc
 
 
+# Design:
 
 
 

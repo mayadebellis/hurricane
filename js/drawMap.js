@@ -19,6 +19,7 @@ var data1 = [
   {name: "Category 5", value: 0},
 ];
 
+var color = d3.scaleOrdinal(d3.schemeCategory20);
 // last color is category 5
 // var color1 = ["#FF2323","#FF8D1C", "#FFC140", "#FFFF32", "#BCFF59"];
 // var color1 = ["#BCFF59","#FFFF32","#FFC140","#FF8D1C", "#FF2323" ];
@@ -26,6 +27,8 @@ var data1 = [
 var color1 = ["#FF4E00", "#E80000", "#B80C09", "#7D0037", "#4C061D"];
 var radius = 50;
 
+
+setupSlider(1851, 2016, function() {console.log("yo.");});
 var svg = d3.select("svg");
 
 // SETTING ORDINAL COLORS
@@ -62,8 +65,6 @@ $(".map").not("path").on("click", function (e) {
   }
 
 });
-
-
 
 var div = d3.select("body").append("div") 
     .attr("id", "tooltip")       
@@ -255,7 +256,7 @@ function update(){
   var maxD = Math.max.apply(Math, tempDomain);
 
   var filteredQuantize = quantize.copy();
-  filteredQuantize.domain([0, maxD]);
+  filteredQuantize.domain([1, maxD]);
 
   if (maxD < 8 && maxD > 0) {
     filteredQuantize.range(d3.range(maxD).map(function(i) { return "q" + i + "-8"; }));

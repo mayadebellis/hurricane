@@ -214,10 +214,81 @@ h3.vis-title{
   stroke-width: 1.25px;
 }   
 
+.small-container {
+  display: flex;
+  justify-content: space-between;
+}
 
+.buttons {
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+  margin-top:52px;
+}
+
+#apply_filters {
+  margin-bottom: 8px;
+}
 
 
 /* CHECKBOXES */
+.ck {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.ck input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.ck:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.ck input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+.ck input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.ck .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
 
 ul {
   list-style-type: none;
@@ -245,8 +316,7 @@ ul {
 .filter_btn:hover {opacity: 0.75}
 
 .filter_btn {
-  margin-left: auto;
-  padding: 8px 16px;
+  padding: 12px 18px;
   border: none;
   background: #333;
   color: #f2f2f2;

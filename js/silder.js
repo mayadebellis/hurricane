@@ -14,9 +14,9 @@ var svgFilter = d3.select("#byYear");
   var sliderYearFirst = svgFilter.append("g")
       .attr("class", "slider")
       .attr("transform", "translate(" + 30 + "," + 100 / 2 + ")");
-  var sliderYearLast = svgFilter.append("g")
-      .attr("class", "slider")
-      .attr("transform", "translate(" + 30 + "," + 200 / 2 + ")");
+  // var sliderYearLast = svgFilter.append("g")
+  //     .attr("class", "slider")
+  //     .attr("transform", "translate(" + 30 + "," + 200 / 2 + ")");
   
   sliderYearFirst.append("line")
       .attr("class", "track")
@@ -29,17 +29,17 @@ var svgFilter = d3.select("#byYear");
       .call(d3.drag()
           .on("start.interrupt", function() { sliderYearFirst.interrupt(); })
           .on("start drag", function() { setHandle1(xYearFirst.invert(d3.event.x)); }));
-  sliderYearLast.append("line")
-      .attr("class", "track")
-      .attr("x1", xYearLast.range()[0])
-      .attr("x2", xYearLast.range()[1])
-    .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-      .attr("class", "track-inset")
-    .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-      .attr("class", "track-overlay")
-      .call(d3.drag()
-          .on("start.interrupt", function() { sliderYearLast.interrupt(); })
-          .on("start drag", function() { setHandle2(xYearLast.invert(d3.event.x)); }));
+  // sliderYearLast.append("line")
+  //     .attr("class", "track")
+  //     .attr("x1", xYearLast.range()[0])
+  //     .attr("x2", xYearLast.range()[1])
+  //   .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+  //     .attr("class", "track-inset")
+  //   .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+  //     .attr("class", "track-overlay")
+  //     .call(d3.drag()
+  //         .on("start.interrupt", function() { sliderYearLast.interrupt(); })
+  //         .on("start drag", function() { setHandle2(xYearLast.invert(d3.event.x)); }));
   
   sliderYearFirst.insert("g", ".track-overlay")
       .attr("class", "ticks")
@@ -55,16 +55,20 @@ var svgFilter = d3.select("#byYear");
       .attr("cx", xYearFirst(1851))
       .attr("r", 9);
   
-  sliderYearLast.insert("g", ".track-overlay")
-      .attr("class", "ticks")
-      .attr("transform", "translate(0," + 18 + ")")
-    .selectAll("text")
-    .data(xYearLast.ticks(10))
-    .enter().append("text")
-      .attr("x", xYearLast)
-      .attr("text-anchor", "middle")
-      .text(function(d) { return d; });
-  var handle2 = sliderYearLast.insert("circle", ".track-overlay")
+  // sliderYearLast.insert("g", ".track-overlay")
+  //     .attr("class", "ticks")
+  //     .attr("transform", "translate(0," + 18 + ")")
+  //   .selectAll("text")
+  //   .data(xYearLast.ticks(10))
+  //   .enter().append("text")
+  //     .attr("x", xYearLast)
+  //     .attr("text-anchor", "middle")
+  //     .text(function(d) { return d; });
+  // var handle2 = sliderYearLast.insert("circle", ".track-overlay")
+  //     .attr("class", "handle")
+  //     .attr("cx", xYearFirst(2016))
+  //     .attr("r", 9);
+  var handle2 = sliderYearFirst.insert("circle", ".track-overlay")
       .attr("class", "handle")
       .attr("cx", xYearFirst(2016))
       .attr("r", 9);
@@ -103,7 +107,9 @@ var svgFilter = d3.select("#byYear");
   // adding text to svgFilter 
   function updateFilterText() {
     var valA = xYearFirst.invert(handle1.attr("cx"));
-    var valB = xYearLast.invert(handle2.attr("cx"));
+    //var valB = xYearLast.invert(handle2.attr("cx"));
+    var valB = xYearFirst.invert(handle2.attr("cx"));
+
     var curText = "";
     if (valA == valB) {
       curText = "["+valA+"]";

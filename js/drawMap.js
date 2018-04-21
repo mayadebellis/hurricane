@@ -28,7 +28,14 @@ var color1 = ["#FF4E00", "#E80000", "#B80C09", "#7D0037", "#4C061D"];
 var radius = 50;
 
 
-setupSlider(1851, 2016, function() {console.log("yo.");});
+setupSlider(1851, 2016, updateSlide);
+function updateSlide(v1, v2) {
+  startYear = v1;
+  endYear = v2;
+}
+
+
+
 var svg = d3.select("svg");
 
 // SETTING ORDINAL COLORS
@@ -205,9 +212,7 @@ function reset() {
   svg.select(".legendQuant")
     .call(legend);
 
-  // Resets where slider circles appear
-  handle1.attr("cx", xYearFirst(1851));
-  handle2.attr("cx", xYearFirst(2016));
+  // TOD0:::Resets where slider circles appear
 
   // resets colors on map back to unfiltered
   svg.selectAll(".state")

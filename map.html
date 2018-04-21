@@ -8,7 +8,6 @@
 <script lang="javascript" src="js/dataWrangle.js"></script>
 <script lang="javascript" src="js/states.js"></script>
 <script lang="javascript" src="js/lib_legend.js"></script>
-<script lang="javascript" src="js/slider2.js"></script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -29,14 +28,15 @@
     <div class="sidebar">
       <div id="filters">
         <h3>Filters</h3>
-        <h5>By Year: 
+      
+        <div width="550" height="120" id="byYear">
+          <h5>By Year: 
             <div class="slider-holder"></div>
               <label for="label-years">
                 <span id="years-range">[1851-1939]</span>
               </label>
         </h5>
-
-        <svg width="550" height="120" id="byYear"></svg>
+        </div>
 
         <div class="byMonth">
           <h5>By Month:</h5>
@@ -78,8 +78,7 @@
       </div>
     </div>
   </div>
-
-  <script src="js/silder.js"></script>
+  <script src="js/slider2.js"></script>
   <script src="js/drawMap.js"></script>
 </body>
 </html>

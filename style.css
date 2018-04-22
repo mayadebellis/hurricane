@@ -73,7 +73,7 @@ body {
 }
 
 .sel-range{
-  stroke: #8b0000;
+  stroke: #a70002;
   stroke-width: 8px;
 }
 /*.states :hover {
@@ -290,7 +290,7 @@ h3.vis-title{
 }
 
 .ck input:checked ~ .checkmark {
-  background-color: #a70002;
+  background-color: #333;
 }
 
 .ck input:checked ~ .checkmark:after {

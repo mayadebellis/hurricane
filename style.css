@@ -68,6 +68,9 @@ body {
   padding-bottom: 200px;
 
 }
+#blankspace {
+  padding: 10px;
+}
 
 /*.states :hover {
   opacity: 0.75;

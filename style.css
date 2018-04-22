@@ -72,6 +72,10 @@ body {
   padding: 10px;
 }
 
+.sel-range{
+  stroke: #8b0000;
+  stroke-width: 8px;
+}
 /*.states :hover {
   opacity: 0.75;
 }*/
@@ -138,6 +142,7 @@ body {
 .chart {
     position: absolute;
     display: flex;
+    border:1px solid black;
     
 }
 

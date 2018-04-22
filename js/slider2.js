@@ -37,7 +37,7 @@ slider.insert("g", ".track-overlay")
     .attr("x", x)
     .attr("text-anchor", "middle")
     .style("font-weight", "bold")
-    // .style("fill", function(x){return color(x);})
+    //.style("fill", function(x){return color(x);})
     .text(function(d) { return d; });
 
 handle = slider.selectAll("rect")
@@ -63,6 +63,7 @@ function startDrag(){
 function drag(d){
   var x1=d3.event.x;
 
+  //TODO: dragging can pull off edge
   // if(x1>xMax){
   //   x1=xMax
   // }else if(x1<xMin){

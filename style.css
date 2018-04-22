@@ -247,7 +247,7 @@ h3.vis-title{
 }
 
 #apply_filters {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 
@@ -285,7 +285,7 @@ h3.vis-title{
 }
 
 .ck input:checked ~ .checkmark {
-  background-color: #333;
+  background-color: #a70002;
 }
 
 .ck input:checked ~ .checkmark:after {

@@ -114,10 +114,9 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
 
       if (!selectedStates.includes(d.id) && selectedStates.length < 2){ 
             drawPie(d);
-          } 
-        
-
+          }
   })
+      
       .on("mouseout", function(d) {  
         // brushing
         d3.selectAll(".state")
@@ -147,6 +146,7 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
             var id = "#pie" + d.id;
             d3.selectAll(id).remove();
           } 
+
       })
 
       .on("click", function(d) {
@@ -172,20 +172,18 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
           .filter(function(elem) {return selectedStates.includes(elem.id);})
           .style("opacity", 1);
 
-        console.log(selectedStates);        
+        console.log(selectedStates);    
         });
 
 });
-
-
 
 function showToolTip(d, dataSet) {
   div.transition()    
       .duration(250)    
       .style("opacity", .9);    
-  div .html(((dataSet.find(function(element) {return element.sid == d.id;})).hurricanes.length))
-     .style("left", $(".legendQuant").offset().left - 50+ "px")
-     .style("top", $(".legendQuant").offset().top + 225 + "px");
+  div .html(((dataSet.find(function(element) {return element.sid == d.id;})).hurricanes.length) + " hurricanes")
+     .style("left", $(".legendQuant").offset().left + "px")
+     .style("top", $(".legendQuant").offset().top + 275 + "px");
 }
 
 /*******************************************************************

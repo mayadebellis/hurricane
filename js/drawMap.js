@@ -75,7 +75,9 @@ $(".map").not("path").on("click", function (e) {
 
 var div = d3.select("body").append("div") 
     .attr("id", "tooltip")       
-    .style("opacity", 0);
+    .style("opacity", 0)
+    .style("left", $(".legendQuant").offset().left + "px")
+    .style("top", $(".legendQuant").offset().top + 275 + "px");
 
 d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
   if (error) throw error;
@@ -116,7 +118,7 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
             drawPie(d);
           }
   })
-      
+
       .on("mouseout", function(d) {  
         // brushing
         d3.selectAll(".state")
@@ -181,9 +183,7 @@ function showToolTip(d, dataSet) {
   div.transition()    
       .duration(250)    
       .style("opacity", .9);    
-  div .html(((dataSet.find(function(element) {return element.sid == d.id;})).hurricanes.length) + " hurricanes")
-     .style("left", $(".legendQuant").offset().left + "px")
-     .style("top", $(".legendQuant").offset().top + 275 + "px");
+  div .html(((dataSet.find(function(element) {return element.sid == d.id;})).hurricanes.length) + " hurricanes");
 }
 
 /*******************************************************************

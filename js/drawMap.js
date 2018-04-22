@@ -75,9 +75,7 @@ $(".map").not("path").on("click", function (e) {
 
 var div = d3.select("body").append("div") 
     .attr("id", "tooltip")       
-    .style("opacity", 0)
-    .style("left", $(".legendQuant").offset().left + "px")
-    .style("top", $(".legendQuant").offset().top + 275 + "px");
+    .style("opacity", 0);
 
 d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
   if (error) throw error;
@@ -107,7 +105,7 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
 
         d3.selectAll(".state")
           .filter(function(elem) {return !(selectedStates.includes(elem.id));})
-          .style("opacity", 0.40);
+          .style("opacity", 0.25);
 
         d3.selectAll(".state")
           .filter(function(elem) {return elem.id == d.id;})
@@ -116,14 +114,15 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
 
       if (!selectedStates.includes(d.id) && selectedStates.length < 2){ 
             drawPie(d);
-          }
-  })
+          } 
+        
 
+  })
       .on("mouseout", function(d) {  
         // brushing
         d3.selectAll(".state")
             .filter(function(elem) {return !selectedStates.includes(elem.id);})
-            .style("opacity", 0.4);
+            .style("opacity", 0.25);
 
         if (selectedStates.length == 0) {
           d3.selectAll(".state")
@@ -148,7 +147,6 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
             var id = "#pie" + d.id;
             d3.selectAll(id).remove();
           } 
-
       })
 
       .on("click", function(d) {
@@ -168,22 +166,26 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
         }
 
         d3.selectAll(".state")
-          .style("opacity", 0.40);
+          .style("opacity", 0.25);
 
         d3.selectAll(".state")
           .filter(function(elem) {return selectedStates.includes(elem.id);})
           .style("opacity", 1);
 
-        console.log(selectedStates);    
+        console.log(selectedStates);        
         });
 
 });
+
+
 
 function showToolTip(d, dataSet) {
   div.transition()    
       .duration(250)    
       .style("opacity", .9);    
-  div .html(((dataSet.find(function(element) {return element.sid == d.id;})).hurricanes.length) + " hurricanes");
+  div .html(((dataSet.find(function(element) {return element.sid == d.id;})).hurricanes.length))
+     .style("left", $(".legendQuant").offset().left - 50+ "px")
+     .style("top", $(".legendQuant").offset().top + 225 + "px");
 }
 
 /*******************************************************************
@@ -211,6 +213,9 @@ function reset() {
     .call(legend);
 
   // TOD0:::Resets where slider circles appear
+  //sliderVals=[v1, v2]
+  // handle = slider.selectAll("rect")
+  // .enter().attr("x", function(d) { return x(sliderVals[d]); });
 
   // resets colors on map back to unfiltered
   svg.selectAll(".state")

@@ -8,7 +8,7 @@ var startYear = 1851;
 var endYear = 2016;
 
 // pie chart
-var width = 260;
+var width = 270;
 var text = "";
 var height = 200;
 var data1 = [

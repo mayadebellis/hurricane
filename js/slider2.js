@@ -1,14 +1,14 @@
 function setupSlider(v1, v2, updateGraph){
 
 sliderVals=[v1, v2],
-    width = 500,
+    sWidth = 500,
     svg = d3.select(".slider-holder").append("svg")
-      .attr('width', width+30)
+      .attr('width', sWidth+30)
       .attr('height', 50);
 
 x = d3.scaleLinear()
     .domain([1851, 2016])
-    .range([0, width])
+    .range([0, sWidth])
     .clamp(true);
 
 var xMin=x(1851),

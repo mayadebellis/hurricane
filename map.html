@@ -31,12 +31,13 @@
       
         <div width="550" height="120" id="byYear">
           <h5>By Year: 
-            <div class="slider-holder"></div>
-              <label for="label-years">
+            <label for="label-years">
                 <span id="years-range">[1851-1939]</span>
               </label>
-          </h5>
+            <div class="slider-holder"></div>
+        </h5>
         </div>
+
         <div class="small-container">
           <div class="byMonth">
             <h5>By Month:</h5>
@@ -95,9 +96,13 @@
             <button class="filter_btn" id="reset_filters" type="reset" onclick="reset()">Reset All</button>
           </div>
         </div>
-        <div class="chart"></div>
-        
       </div>
+      <div id="blankspace"></div>
+      <div id="compare">
+        <h3> Select 2 states on the map to compare. </h3>
+        <div class="chart"></div>
+      </div>
+
     </div>
   </div>
   <script src="js/slider2.js"></script>

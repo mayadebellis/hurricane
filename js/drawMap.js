@@ -261,7 +261,7 @@ function update(){
   var maxD = Math.max.apply(Math, tempDomain);
 
   var filteredQuantize = quantize.copy();
-  filteredQuantize.domain([1, maxD]);
+  filteredQuantize.domain([0, maxD]);
 
   if (maxD < 8 && maxD > 0) {
     filteredQuantize.range(d3.range(maxD).map(function(i) { return "q" + i + "-8"; }));

@@ -213,7 +213,7 @@ function reset() {
     .call(legend);
 
   // TOD0:::Resets where slider circles appear
-  //sliderVals=[v1, v2]
+  // sliderVals=[0, 60]
   // handle = slider.selectAll("rect")
   // .enter().attr("x", function(d) { return x(sliderVals[d]); });
 

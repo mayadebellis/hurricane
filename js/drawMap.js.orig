@@ -106,7 +106,7 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
 
       if (!selectedStates.includes(d.id) && selectedStates.length < 2){ 
             drawPie(d);
-            relax(d);
+            relax();
           } 
         
 
@@ -205,11 +205,16 @@ function reset() {
   svg.select(".legendQuant")
     .call(legend);
 
-
+<<<<<<< Updated upstream
   // TOD0:::Resets where slider circles appear
-  // sliderVals=[0, 60]
+  //sliderVals=[v1, v2]
   // handle = slider.selectAll("rect")
   // .enter().attr("x", function(d) { return x(sliderVals[d]); });
+=======
+  // Resets where slider circles appear
+  handle1.attr("cx", xYearFirst(1851));
+  handle2.attr("cx", xYearFirst(2016));
+>>>>>>> Stashed changes
 
   // resets colors on map back to unfiltered
   svg.selectAll(".state")
@@ -539,13 +544,10 @@ function drawPie (d){
 var alpha = 0.5;
 var spacing = 12;
 
-function relax(d) {
+function relax() {
     again = false;
-    var id = "#pie" + d.id; 
 
-    console.log("ID ID: )" + id);
-
-    var titles = d3.select(id).selectAll(".name-text");
+    var titles = d3.selectAll(".name-text");
 
         titles.each(function (d, i) {
         a_obj = this;
@@ -592,17 +594,15 @@ function relax(d) {
 
                 da.attr("dy", 0);
                 db.attr("dy", 10);
-
                 return;
               }  
 
             }
-          });
         });
-
-
+    });
+ 
 }
 
-
+relax();
 
 

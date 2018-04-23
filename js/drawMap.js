@@ -76,7 +76,7 @@ $(".map").not("path").on("click", function (e) {
 var div = d3.select("body").append("div") 
     .attr("id", "tooltip")       
     .style("opacity", 0)
-    .style("left", $(".legendQuant").offset().left + "px")
+    .style("left", function(d) { console.log($(".legendQuant").offset().left); return $(".legendQuant").offset().left + "px";})
     .style("top", $(".legendQuant").offset().top + 275 + "px");
 
 d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {

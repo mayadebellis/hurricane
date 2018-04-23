@@ -19,12 +19,22 @@ var data1 = [
   {name: "Category 5", value: 0},
 ];
 
+var color = d3.scaleOrdinal(d3.schemeCategory20);
 // last color is category 5
 // var color1 = ["#FF2323","#FF8D1C", "#FFC140", "#FFFF32", "#BCFF59"];
 // var color1 = ["#BCFF59","#FFFF32","#FFC140","#FF8D1C", "#FF2323" ];
 
 var color1 = ["#FF4E00", "#E80000", "#B80C09", "#7D0037", "#4C061D"];
 var radius = 50;
+
+
+setupSlider(1851, 2016, updateSlide);
+function updateSlide(v1, v2) {
+  startYear = v1;
+  endYear = v2;
+}
+
+
 
 var svg = d3.select("svg");
 
@@ -62,8 +72,6 @@ $(".map").not("path").on("click", function (e) {
   }
 
 });
-
-
 
 var div = d3.select("body").append("div") 
     .attr("id", "tooltip")       
@@ -106,7 +114,6 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
 
       if (!selectedStates.includes(d.id) && selectedStates.length < 2){ 
             drawPie(d);
-            relax(d);
           } 
         
 
@@ -204,7 +211,6 @@ function reset() {
 
   svg.select(".legendQuant")
     .call(legend);
-
 
   // TOD0:::Resets where slider circles appear
   //sliderVals=[v1, v2]
@@ -376,23 +382,17 @@ function drawPie (d){
         
         var state_name = (states_json.find(function(elem) { if (d.id == elem.sid) return elem.name;})).name;
 
-        // Adds title to Pie Chart
-        if (!(data1[0].value == 0 && data1[1].value == 0 && data1[2].value == 0
-         && data1[3].value == 0 && data1[4].value == 0)){   
-          pie_svg.append("text")
-              .attr("x", width / 2 )
-              .attr("y", 40)
-              .style("text-anchor", "middle")
-              .text(state_name);
-            }
+        // TODO: Add title to Pie Chart    
+        pie_svg.append("text")
+            .attr("x", width / 2 )
+            .attr("y", 40)
+            .style("text-anchor", "middle")
+            .text(state_name);
 
       
         var g_pie = pie_svg.append('g')
-        .attr('transform', 'translate(' + (width/2) + ',' + (height/2) + ')')
-        .attr("class", "slices");
+        .attr('transform', 'translate(' + (width/2) + ',' + (height/2) + ')');
 
-        pie_svg.append('g')
-          .attr("class", "labelName");
 
         var arc = d3.arc()
           .innerRadius(0)
@@ -401,10 +401,6 @@ function drawPie (d){
         var label = d3.arc()
             .outerRadius(radius - 40)
             .innerRadius(radius - 40);
-
-        var outerArc = d3.arc()
-          .outerRadius(radius * 0.9)
-          .innerRadius(radius * 0.9);
 
         var pie = d3.pie()
           .value(function(d) {return d.value; })
@@ -422,47 +418,6 @@ function drawPie (d){
             .attr('fill', (d,i) => color1[i])
             .style('opacity', 1)
             .style('stroke', 'white');
-
-
-  function midAngle(d) {
-      return d.startAngle + (d.endAngle - d.startAngle) / 2;
-    }
-
-        // ===========================================================================================
-        // add text labels
-        // var label = pie_svg.select('.labelName').selectAll('text')
-        //     .data(data1)
-        //   .enter().append('text')
-        //     .attr('dy', '.35em')
-        //     .html(function(d) {
-        //         console.log("d is", d);
-        //         // add "key: value" for given category. Number inside tspan is bolded in stylesheet.
-        //         return d.name;
-        //     })
-        //     .attr('transform', function(d) {
-
-        //       console.log("#2 d is", d);
-        //         // effectively computes the centre of the slice.
-        //         // see https://github.com/d3/d3-shape/blob/master/README.md#arc_centroid
-        //         var pos = arc.centroid(d);
-
-        //         console.log("pos is", pos);
-
-        //         // changes the point to be on left or right depending on where label is.
-        //         pos[0] = radius * 0.95 * (midAngle(d) < Math.PI ? 1 : -1);
-        //         pos[1] = 150;
-        //         return 'translate(' + pos + ')';
-        //     })
-        //     .style('text-anchor', function(d) {
-        //         // if slice centre is on the left, anchor text to start, otherwise anchor to end
-        //         return (midAngle(d)) < Math.PI ? 'start' : 'end';
-        //     });
-        // ===========================================================================================
-
-
-
-
-
 
           // g_pie_slice.append("text")
           //   .attr("class", "name-text")
@@ -486,14 +441,13 @@ function drawPie (d){
       pos[0] = radius * (midAngle(d) < Math.PI ? 1.2 : -1.2);
         
     
-      var percent = (d.endAngle - d.startAngle)/(2*Math.PI)*100
-       if(percent < 3){
-       console.log(percent)
+  var percent = (d.endAngle - d.startAngle)/(2*Math.PI)*100
+       if(percent<3){
+       //console.log(percent)
        pos[1] += i*15
        }
         return "translate("+ pos +")";
       })
-
       .text(function(d) { 
         if (d.value > 0) {
           return d.data.name;
@@ -505,16 +459,23 @@ function drawPie (d){
       var ac = midAngle(d) < Math.PI ? 0:-50
               return ac
       })
-      .attr("dy", 8);
-    
+      .attr("dy", 5 )
+      
+      
+     function midAngle(d) {
+      return d.startAngle + (d.endAngle - d.startAngle) / 2;
+    }
+
     var polyline = g_pie.selectAll("polyline")
-      .data(pie(data1))
+      .data(pie(data1), function(d) {
+        return d.data.currency;
+      })
       .enter()
       .append("polyline")
       .attr("points", function(d,i) {
         var pos = arc.centroid(d);
             pos[0] = radius * 0.95 * (midAngle(d) < Math.PI ? 1 : -1);
-         var o =   arc.centroid(d)
+         var o=   arc.centroid(d)
          var percent = (d.endAngle -d.startAngle)/(2*Math.PI)*100
            if(percent<3){
            //console.log(percent)
@@ -535,74 +496,5 @@ function drawPie (d){
             }
           });
 }
-
-var alpha = 0.5;
-var spacing = 12;
-
-function relax(d) {
-    again = false;
-    var id = "#pie" + d.id; 
-
-    console.log("ID ID: )" + id);
-
-    var titles = d3.select(id).selectAll(".name-text");
-
-        titles.each(function (d, i) {
-        a_obj = this;
-        a = this;
-        console.log("AAA this is", this);
-        da = d3.select(a);
-        y1 = da.attr("y");
-
-        a = $(a).attr("transform");
-        a = a.split("(");
-        a = a[1].split(")");
-        a = a[0].split(",");
-        
-        titles.each(function (d, j) {
-            b = this;
-            b_obj = this;
-            
-            // a & b are the same element and don't collide.
-            if (a_obj == b_obj) return;
-            console.log("b is this", b);
-
-            b = $(b).attr("transform");
-            b = b.split("(");
-            b = b[1].split(")");
-            b = b[0].split(",");
-            
-            var dx_b = b[0];
-            var dy_b = b[1];
-
-            var dx_a = a[0];
-            var dy_a = a[1];
-
-            console.log("dx and dy are:" +  dx_b + " dy: " + dy_b);
-
-            deltaY = Math.abs(dy_a - dy_b);
-
-            if (deltaY < 8) {
-              console.log("dy-a is " + dy_a);
-              console.log("dy-b is " + dy_b);
-
-              if (dy_a > dy_b){ //dy_a is lower than dy_b 
-                da = d3.select(a_obj);
-                db = d3.select(b_obj);
-
-                da.attr("dy", 0);
-                db.attr("dy", 10);
-
-                return;
-              }  
-
-            }
-          });
-        });
-
-
-}
-
-
 
 

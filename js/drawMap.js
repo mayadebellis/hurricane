@@ -466,6 +466,7 @@ function drawPie (d){
       return d.startAngle + (d.endAngle - d.startAngle) / 2;
     }
 
+    relax(d);
     var polyline = g_pie.selectAll("polyline")
       .data(pie(data1), function(d) {
         return d.data.currency;
@@ -495,6 +496,70 @@ function drawPie (d){
               return "0px";
             }
           });
+}
+
+function relax(d) {
+    again = false;
+    var id = "#pie" + d.id; 
+
+    console.log("ID ID: )" + id);
+
+    var titles = d3.select(id).selectAll(".name-text");
+
+        titles.each(function (d, i) {
+        a_obj = this;
+        a = this;
+        console.log("AAA this is", this);
+        da = d3.select(a);
+        y1 = da.attr("y");
+
+        a = $(a).attr("transform");
+        a = a.split("(");
+        a = a[1].split(")");
+        a = a[0].split(",");
+        
+        titles.each(function (d, j) {
+            b = this;
+            b_obj = this;
+            
+            // a & b are the same element and don't collide.
+            if (a_obj == b_obj) return;
+            console.log("b is this", b);
+
+            b = $(b).attr("transform");
+            b = b.split("(");
+            b = b[1].split(")");
+            b = b[0].split(",");
+            
+            var dx_b = b[0];
+            var dy_b = b[1];
+
+            var dx_a = a[0];
+            var dy_a = a[1];
+
+            console.log("dx and dy are:" +  dx_b + " dy: " + dy_b);
+
+            deltaY = Math.abs(dy_a - dy_b);
+
+            if (deltaY < 8) {
+              console.log("dy-a is " + dy_a);
+              console.log("dy-b is " + dy_b);
+
+              if (dy_a > dy_b){ //dy_a is lower than dy_b 
+                da = d3.select(a_obj);
+                db = d3.select(b_obj);
+
+                da.attr("dy", -1);
+                db.attr("dy", 8);
+
+                return;
+              }  
+
+            }
+          });
+        });
+
+
 }
 
 

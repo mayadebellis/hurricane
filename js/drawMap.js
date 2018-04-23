@@ -155,8 +155,6 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
         // brushing
         if (!selectedStates.includes(d.id) && selectedStates.length < 2) {
           selectedStates.push(d.id);
-          // drawPie(d);
-          
         } else {
           var i = selectedStates.indexOf(d.id);
           if (i > -1) {

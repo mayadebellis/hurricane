@@ -547,8 +547,8 @@ function relax(d) {
                 da = d3.select(a_obj);
                 db = d3.select(b_obj);
 
-                da.attr("dy", -1);
-                db.attr("dy", 8);
+                da.attr("dy", -2);
+                db.attr("dy", 10);
 
                 return;
               }  

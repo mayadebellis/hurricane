@@ -17,15 +17,14 @@
 <body> 
 <section class="landing-page">
   <div class="mask">
-    <h1 class="vis-title">Hurricanes Throughout History</h1>
-    <h3 class="vis-title authors">By Ballard Blair, Maya DeBellis, and Olivia MacDougal</h3>
-    <div class="landing-tagline">An exploratory visualization about hurricanes in the Atlantic Basin since 1851.</div>
-    <div class="bottom">
-      <div class="video-container">
-        <h3 class="vid-title"> Check out our explanatory video!</h3>
-        ​<iframe class="video" width="400" height="250" src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      </div>
-      <!-- <p class="landing-info">How have hurricans affected the US in the past 150 years? Is it better to move to Florida or Texas if you're afraid of hurricanes. <br>Our exploratory visualization tracks hurricane severity in the Atlantic Basin since 1851. Hurricanes throughout History uses the <a href="http://www.aoml.noaa.gov/hrd/hurdat/All_U.S._Hurricanes.html">Continental US Hurricane Impact/Landfall</a> dataset. </p> -->
+    <div id="landing-container">
+      <h1 class="vis-title">Hurricanes Throughout History</h1>
+      <h3 class="vis-title authors">By Ballard Blair, Maya DeBellis, and Olivia MacDougal</h3>
+      <p class="landing-tagline">An exploratory visualization about hurricanes in the Atlantic Basin since 1851.</p>
+    </div>
+    <div class="video-container">
+      <h3 class="vid-title"> Check out our explanatory video!</h3>
+      ​<iframe class="video" width="400" height="250" src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
   </div>
   <section id="scroll-btn">
@@ -34,14 +33,14 @@
 </section>  
 
 <!-- <section class="viz-page"> -->
-<div id="visualization" class="landing-info"><div class="landing-head">How have hurricanes affected the US in the past 150 years? </div>Is it better to move to Florida or Texas if you're afraid of hurricanes? (Hint: probably stay away from both.) Our exploratory visualization allows you to track hurricane severity in the Atlantic Basin since 1851. You can dive into hurricanes in specific years and month and compare severity in each state. Hurricanes throughout History uses data from the<a href="http://www.aoml.noaa.gov/hrd/hurdat/All_U.S._Hurricanes.html">Continental US Hurricane Impact/Landfall</a> dataset. </div>
+<div id="visualization" class="landing-info"><div class="landing-head">How have hurricanes affected the US in the past 165 years? </div>Is it better to move to Florida or Texas if you're afraid of hurricanes? (Hint: probably stay away from both.) </br>Our exploratory visualization allows you to track hurricane severity in the Atlantic Basin since 1851. You can explore where hurricanes have hit over a span of years and in certain months, as well as compare severity in each state. Hurricanes throughout History uses data from the <a href="http://www.aoml.noaa.gov/hrd/hurdat/All_U.S._Hurricanes.html">Continental US Hurricane Impact/Landfall</a> dataset. </br></br>Start by hovering or clicking on the map!</div>
   <div class="container vis-container">
     <div class="map">
       <svg width="1100" height="600"></svg>
     </div>
     <div class="sidebar">
       <div id="filters">
-        <h3>Filters</h3>
+        <h3>Filters:</h3>
       
         <div width="550" height="120" id="byYear">
           <h5>By Year:
@@ -107,7 +106,7 @@
       </div>
       <div id="blankspace"></div>
       <div id="compare">
-        <h3> Select two states to compare </h3>
+        <h3> <span>Compare:</span> Select two states on the map</h3>
       </div>
       <div id ="pieshell">
         <div class="chart"></div>

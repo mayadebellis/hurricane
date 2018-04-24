@@ -52,7 +52,7 @@ svg.append("g")
 var legend = d3.legendColor()
   .labelFormat(d3.format(".0f"))
   .useClass(true)
-  .title("Total Number of Hurricanes to Make Landfall")
+  .title("Number of Hurricanes to Make Landfall")
   .titleWidth(100)
   .scale(quantize);
 
@@ -70,7 +70,6 @@ $(".map").not("path").on("click", function (e) {
     d3.selectAll(".pie").remove();
     selectedStates = [];
   }
-
 });
 
 var div = d3.select("body").append("div") 
@@ -199,7 +198,7 @@ function reset() {
   var legend = d3.legendColor()
     .labelFormat(d3.format(".0f"))
     .useClass(true)
-    .title("Total Number of Hurricanes to Make Landfall")
+    .title("Number of Hurricanes to Make Landfall")
     .titleWidth(100)
     .scale(quantize);
 
@@ -267,7 +266,7 @@ function update(){
   var filteredLegend = d3.legendColor()
     .labelFormat(d3.format(".0f"))
     .useClass(true)
-    .title("Total Number of Hurricanes to Make Landfall")
+    .title("Number of Hurricanes to Make Landfall")
     .titleWidth(100)
     .scale(filteredQuantize);
 

@@ -125,7 +125,9 @@ body {
 
 
 .mask {
-   color: #fff;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
     font-family: 'Raleway', sans-serif;
     background-color: rgba(0,0,0,.2);
     left: 0;
@@ -151,27 +153,19 @@ h1.vis-title {
   font-size: 25px;
 }
 
-.vis-title {
-  float: right;
-  width: 100%;
-  margin-right: 70px;
-  text-align: right;
-}
-
 .landing-text {
   font-size: 16px;
-  margin-left: 70px;
   margin-top: 0px;
 }
 
 .landing-tagline {
   font-size: 16px;
-  /*margin-left: 70px;*/
-  margin-top: 0px;
-  /*float: right;*/
-  width: 100%;
-  padding-right: 200px;
+}
+
+#landing-container {
+  margin-right: 40px;
   text-align: right;
+  margin-bottom: 20%;
 }
 
 .vid-title {
@@ -180,7 +174,7 @@ h1.vis-title {
 }
 
 .video-container {
-  margin-left: 70px;
+  margin-left: 50px;
 }
 
 .bottom {
@@ -357,6 +351,12 @@ ul {
 }
 
 #filters h3 {
+  text-transform: uppercase;
+    letter-spacing: .2em;
+    font-size: 24px;
+}
+
+#compare h3 span {
   text-transform: uppercase;
     letter-spacing: .2em;
     font-size: 24px;

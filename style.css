@@ -190,14 +190,19 @@ h1.vis-title {
 .bottom {
   display: flex;
   justify-content: space-between;
-  margin-top: 20%;
+  margin-top: 15%;
 }
-
+.landing-info {
+  padding-top: 10px;
+  margin-left: 20px;
+}
 .landing-info a {
   font-style: italic;
-  color: #fff;
+  color: #a70002;
   text-decoration: none;
-  margin-right: 70px;
+}
+.landing-info a:hover {
+  color: #efb19c;
 }
 
 # THIS is all shit for the slider

@@ -66,7 +66,6 @@ $(".map").not("path").on("click", function (e) {
   if (e.target.nodeName != "path") {
     d3.selectAll(".state")
       .style("opacity", 1);
-
     d3.selectAll(".pie").remove();
     selectedStates = [];
   }
@@ -146,6 +145,7 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
           if (!selectedStates.includes(d.id)){ 
             var id = "#pie" + d.id;
             d3.selectAll(id).remove();
+            $(".chart").hide();
           } 
       })
 
@@ -340,6 +340,9 @@ function filterYear(oldData, low, high){
 }
 
 function drawPie (d){
+
+  $(".chart").show();
+
   var state_obj = (currDataSet.find(function(element) {return element.sid == d.id;})).hurricanes;
   for (var i = 0; state_obj.length > i; i++){
     if (state_obj[i].category == 1){

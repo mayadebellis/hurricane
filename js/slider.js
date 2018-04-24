@@ -29,7 +29,7 @@ selRange = slider.append("line")
     .attr("x2", 10+x(sliderVals[1]))
 
 slider.insert("g", ".track-overlay")
-    .attr("class", "ticks")
+    .attr("id", "ticks")
     .attr("transform", "translate(10,24)")
   .selectAll("text")
   .data(x.ticks(10))

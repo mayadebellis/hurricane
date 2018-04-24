@@ -27,10 +27,13 @@
       <!-- <p class="landing-info">How have hurricans affected the US in the past 150 years? Is it better to move to Florida or Texas if you're afraid of hurricanes. <br>Our exploratory visualization tracks hurricane severity in the Atlantic Basin since 1851. Hurricanes throughout History uses the <a href="http://www.aoml.noaa.gov/hrd/hurdat/All_U.S._Hurricanes.html">Continental US Hurricane Impact/Landfall</a> dataset. </p> -->
     </div>
   </div>
+  <section id="scroll-btn">
+  <a href="#visualization"><span></span></a>
+  </section>
 </section>  
 
 <!-- <section class="viz-page"> -->
-<div class="landing-info"><div class="landing-head">How have hurricanes affected the US in the past 150 years? </div>Is it better to move to Florida or Texas if you're afraid of hurricanes? (Hint: probably stay away from both.) Our exploratory visualization allows you to track hurricane severity in the Atlantic Basin since 1851. You can dive into hurricanes in specific years and month and compare severity in each state. Hurricanes throughout History uses data from the<a href="http://www.aoml.noaa.gov/hrd/hurdat/All_U.S._Hurricanes.html">Continental US Hurricane Impact/Landfall</a> dataset. </div>
+<div id="visualization" class="landing-info"><div class="landing-head">How have hurricanes affected the US in the past 150 years? </div>Is it better to move to Florida or Texas if you're afraid of hurricanes? (Hint: probably stay away from both.) Our exploratory visualization allows you to track hurricane severity in the Atlantic Basin since 1851. You can dive into hurricanes in specific years and month and compare severity in each state. Hurricanes throughout History uses data from the<a href="http://www.aoml.noaa.gov/hrd/hurdat/All_U.S._Hurricanes.html">Continental US Hurricane Impact/Landfall</a> dataset. </div>
   <div class="container vis-container">
     <div class="map">
       <svg width="1100" height="600"></svg>
@@ -113,5 +116,14 @@
 
 <script src="js/slider.js"></script>
 <script src="js/drawMap.js"></script>
+<script>
+// animation for slider button on landing page
+$(function() {
+  $('a[href*="#"]').on('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 800, 'linear');
+  });
+});
+ </script>
 </body>
 </html>

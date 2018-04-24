@@ -146,9 +146,10 @@ body {
 }
 
 .vis-container {
-  margin: 30px;
-  margin-top: 100px;
-  height: 86%;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 40px;
+  height: 82%;
 }
 
 h1.vis-title {
@@ -194,8 +195,9 @@ h1.vis-title {
   margin-top: 15%;
 }
 .landing-info {
-  padding-top: 10px;
-  margin-left: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .landing-info a {
   font-style: italic;
@@ -204,6 +206,11 @@ h1.vis-title {
 }
 .landing-info a:hover {
   color: #efb19c;
+}
+
+.landing-head {
+  padding-top: 10px;
+  font-size: 24px;
 }
 
 # THIS is all shit for the slider

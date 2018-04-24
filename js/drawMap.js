@@ -178,8 +178,13 @@ function showToolTip(d, dataSet) {
   div.transition()    
       .duration(250)    
       .style("opacity", .9);    
-  div .html(((dataSet.find(function(element) {return element.sid == d.id;})).hurricanes.length) + " hurricanes");
-}
+  div .html(function () {
+      var len = ((dataSet.find(function(element) {return element.sid == d.id;})).hurricanes.length) 
+      if (len == 1)
+        return len + " hurricane";
+      else 
+        return len + " hurricanes";
+    })};
 
 /*******************************************************************
     Reverts all changes to data and viz from filtering to defaults

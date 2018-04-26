@@ -409,6 +409,7 @@ function drawPie (d){
 
     g_pie_slice.append("path")
       .attr('d', arc)
+      .attr("class", "pie-slice")
       .attr('fill', (d,i) => color1[i])
       .style('opacity', 1)
       .style('stroke', 'white');
@@ -465,6 +466,7 @@ function drawPie (d){
       })
       .enter()
       .append("polyline")
+
       .attr("points", function(d,i) {
         var pos = arc.centroid(d);
           pos[0] = radius * 0.95 * (midAngle(d) < Math.PI ? 1 : -1);
@@ -487,6 +489,46 @@ function drawPie (d){
             return "0px";
           }
         });
+
+          d3.selectAll(".pie-slice")
+            .on("mouseover", function(d) {
+              console.log("this is: ", (((this.parentNode).parentNode).parentNode).id);
+                var pie_id = (((((this.parentNode).parentNode).parentNode).id));
+                
+                var pie_tooltip_div = d3.select("#" + pie_id).append("text")
+                    .attr("class", ("pie-tooltip" + ((pie_id).substring(3,5))))
+                    .attr("y", "180")
+                    .attr("x", "45")
+                    .style("position", "absolute")
+                    .style("z-index", "10")
+                    
+                    .style("opacity", 0);
+                pie_tooltip_div
+                  .html(d.data.name + ": " + d.value + " hurricanes");
+                pie_tooltip_div
+                  .transition()    
+                  .duration(400)    
+                  .style("opacity", 1)
+                  
+              
+            })
+            .on("mouseout", function(d){
+               var pie_id = (".pie-tooltip" + ((((((this.parentNode).parentNode).parentNode).id)).substring(3,5)));
+                console.log("this is foreal:"+ ((((this.parentNode).parentNode).parentNode).id).substring(3,5));
+                console.log("pie id pie id" + pie_id);
+                var pie_tooltip_div = d3.selectAll(pie_id)
+                  .transition()    
+                  .duration(300)    
+                  .style("opacity", 0);
+                  
+              console.log("d is at the end of mouseout" , d);
+
+            });
+
+
+
+
+
 }
 
 function relax(d) {

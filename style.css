@@ -177,6 +177,12 @@ h1.vis-title {
 
 .video-container {
   margin-left: 50px;
+  margin-top: 11%;
+}
+
+.video {
+  float: left;
+
 }
 
 .bottom {

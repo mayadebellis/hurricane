@@ -167,7 +167,6 @@ h1.vis-title {
 #landing-container {
   margin-right: 40px;
   text-align: right;
-  margin-bottom: 20%;
 }
 
 .vid-title {
@@ -177,6 +176,7 @@ h1.vis-title {
 
 .video-container {
   margin-left: 50px;
+  padding-top: 5rem;
 }
 
 .bottom {

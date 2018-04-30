@@ -193,6 +193,18 @@ function showToolTip(d, dataSet) {
     Reverts all changes to data and viz from filtering to defaults
 *******************************************************************/
 function reset() {
+  // Reset slider
+  sliderVals = [1851, 2016];
+  resethandle = d3.selectAll(".handle")
+    .attr("y", -8)
+    .attr("x", function(d) { return x(sliderVals[d]); })
+    .attr("rx", 3)
+    .attr("height", 16)
+    .attr("width", 20);
+  selRange
+      .attr("x1", 10+x(1851))
+      .attr("x2", 10+x(2016));
+
   // clears all checkboxes
   $('input[type=checkbox]').each(function() 
   { 
@@ -213,10 +225,6 @@ function reset() {
   svg.select(".legendQuant")
     .call(legend);
 
-  // TOD0:::Resets where slider circles appear
-  // sliderVals=[0, 60]
-  // handle = slider.selectAll("rect")
-  // .enter().attr("x", function(d) { return x(sliderVals[d]); });
 
   // resets colors on map back to unfiltered
   svg.selectAll(".state")
@@ -226,6 +234,7 @@ function reset() {
             return quantize(length) + " state"
           else
             return "state"});
+
 }
 
 /*******************************************************************

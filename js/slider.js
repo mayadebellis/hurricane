@@ -56,6 +56,7 @@ handle = slider.selectAll("rect")
           .on("end", endDrag)
     );
 
+
 function startDrag(){
   d3.select(this).raise().classed("active", true);
 }
@@ -69,7 +70,6 @@ function drag(d){
   // }else if(x1<xMin){
   //   x1=xMin
   // }
-  console.log(d3.select(this));
   d3.select(this).attr("x", x1);
   var x2=x(sliderVals[d==0?1:0])
   selRange
@@ -113,3 +113,5 @@ function endDrag(d){
 }
 
 }
+
+

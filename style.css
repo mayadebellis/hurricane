@@ -122,6 +122,9 @@ body {
   overflow: hidden;
 }
 
+.category-meaning:hover {
+  
+}
 
 #tooltip {
   position: absolute;
@@ -228,7 +231,7 @@ h1.vis-title {
 .bottom {
   display: flex;
   justify-content: space-between;
-  margin-top: 15%;
+  margin-top: 5%;
 }
 .landing-info {
   height: 15%;

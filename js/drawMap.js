@@ -112,8 +112,11 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
           .style("opacity", 1);
       
 
+          console.log("d is in here", d);
+          console.log("currDataSet is in here", currDataSet);
+
       if (!selectedStates.includes(d.id) && selectedStates.length < 2){ 
-            drawPie(d);
+            drawPie(d.id);
           } 
         
 
@@ -145,7 +148,7 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
           if (!selectedStates.includes(d.id)){ 
             var id = "#pie" + d.id;
             d3.selectAll(id).remove();
-            $(".chart").hide();
+            
           } 
       })
 
@@ -287,6 +290,16 @@ function update(){
           return filteredQuantize(length) + " state"
               else
           return "state"});
+
+
+      console.log("selectedStates are", selectedStates);
+
+      for (var i = 0; i < selectedStates.length; i++){
+        var id = "#pie" + selectedStates[i];
+        d3.selectAll(id).remove();
+        drawPie(selectedStates[i]);
+      }
+
 }
 
 // AUXILIARY and FILTERING FUNCTIONS
@@ -348,7 +361,7 @@ function drawPie (d){
 
   $(".chart").show();
 
-  var state_obj = (currDataSet.find(function(element) {return element.sid == d.id;})).hurricanes;
+  var state_obj = (currDataSet.find(function(element) {return element.sid == d;})).hurricanes;
   for (var i = 0; state_obj.length > i; i++){
     if (state_obj[i].category == 1){
       data1[0].value += 1;
@@ -371,12 +384,12 @@ function drawPie (d){
   // appends svg to chart area 
   var pie_svg = d3.select(".chart").append("svg")
       .attr("class", "pie")
-      .attr("id", ("pie" + d.id))
+      .attr("id", ("pie" + d))
       .style("width", width)
       .style("height", height);
       
   
-  var state_name = (states_json.find(function(elem) { if (d.id == elem.sid) return elem.name;})).name;
+  var state_name = (states_json.find(function(elem) { if (d == elem.sid) return elem.name;})).name;
 
   // TODO: Add title to Pie Chart    
   pie_svg.append("text")
@@ -533,7 +546,7 @@ function drawPie (d){
 
 function relax(d) {
     again = false;
-    var id = "#pie" + d.id;
+    var id = "#pie" + d;
 
     var titles = d3.select(id).selectAll(".name-text");
 

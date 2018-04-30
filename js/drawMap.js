@@ -235,6 +235,12 @@ function reset() {
           else
             return "state"});
 
+  for (var i = 0; i < selectedStates.length; i++){
+        var id = "#pie" + selectedStates[i];
+        d3.selectAll(id).remove();
+        drawPie(selectedStates[i]);
+      }
+
 }
 
 /*******************************************************************

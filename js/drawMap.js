@@ -605,13 +605,13 @@ $(".help").mouseover(function(){
   var top_offset = $( "#filters" ).offset().top + ($( "#filters" ).outerHeight() - $( ".help-text" ).outerHeight()) + "px";
 
   $(".help-text").css("left", left_offset);
-  $(".help-text").css("top", top_offset);
+  $(".help-text").css("top", top_offset);v
   
 });
 
-// $(".help").mouseout(function(){
-//   $(".help-text").css("visibility", "hidden");
+$(".help").mouseout(function(){
+  $(".help-text").css("visibility", "hidden");
 
-// });
+});
 
 

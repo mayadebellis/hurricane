@@ -65,9 +65,17 @@ body {
     z-index: 1;
 }
 
-/*.help:hover .help-text {
-    visibility: visible;
-}*/
+.help .help-text::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 95%;
+    margin-left: -15px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
 .help-text ul {
   font-size: 14px;
   text-align: left;

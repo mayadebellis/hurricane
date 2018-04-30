@@ -596,8 +596,22 @@ function relax(d) {
             }
           });
         });
-
-
 }
+
+$(".help").mouseover(function(){
+  $(".help-text").css("visibility", "visible");
+
+  var left_offset = $(".sidebar").offset().left + "px";
+  var top_offset = $( "#filters" ).offset().top + ($( "#filters" ).outerHeight() - $( ".help-text" ).outerHeight()) + "px";
+
+  $(".help-text").css("left", left_offset);
+  $(".help-text").css("top", top_offset);
+  
+});
+
+// $(".help").mouseout(function(){
+//   $(".help-text").css("visibility", "hidden");
+
+// });
 
 

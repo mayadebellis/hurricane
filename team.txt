@@ -1,0 +1,7 @@
+Team Members: Ballard Blair, Maya DeBellis, Olivia MacDougal
+Project Name: Hurricanes Throughout History
+
+Link to video: https://www.youtube.com/watch?time_continue=1&v=xd45SjIh5Cg
+Link to Github + source code: https://github.com/mayadebellis/hurricane/tree/master
+Link to visualization: https://mayadebellis.github.io/hurricane/
+

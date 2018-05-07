@@ -112,8 +112,8 @@ d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
           .style("opacity", 1);
       
 
-          console.log("d is in here", d);
-          console.log("currDataSet is in here", currDataSet);
+          // console.log("d is in here", d);
+          // console.log("currDataSet is in here", currDataSet);
 
       if (!selectedStates.includes(d.id) && selectedStates.length < 2){ 
             drawPie(d.id);
@@ -529,7 +529,7 @@ function drawPie (d){
     relax(d);
           d3.selectAll(".pie-slice")
             .on("mouseover", function(d) {
-              console.log("this is: ", (((this.parentNode).parentNode).parentNode).id);
+              // console.log("this is: ", (((this.parentNode).parentNode).parentNode).id);
                 var pie_id = (((((this.parentNode).parentNode).parentNode).id));
                 
                 var pie_tooltip_div = d3.select("#" + pie_id).append("text")
@@ -551,14 +551,14 @@ function drawPie (d){
             })
             .on("mouseout", function(d){
                var pie_id = (".pie-tooltip" + ((((((this.parentNode).parentNode).parentNode).id)).substring(3,5)));
-                console.log("this is foreal:"+ ((((this.parentNode).parentNode).parentNode).id).substring(3,5));
-                console.log("pie id pie id" + pie_id);
+                // console.log("this is foreal:"+ ((((this.parentNode).parentNode).parentNode).id).substring(3,5));
+                // console.log("pie id pie id" + pie_id);
                 var pie_tooltip_div = d3.selectAll(pie_id)
                   .transition()    
                   .duration(300)    
                   .style("opacity", 0);
                   
-              console.log("d is at the end of mouseout" , d);
+              // console.log("d is at the end of mouseout" , d);
 
             });
 
@@ -576,7 +576,7 @@ function relax(d) {
     var titles = d3.select(id).selectAll(".name-text");
     var polylines = d3.select(id).selectAll("polyline");
      
-    console.log("polylines are", polylines);
+    // console.log("polylines are", polylines);
 
         titles.each(function (d, i) {
         a_obj = this;
@@ -596,7 +596,7 @@ function relax(d) {
             da = d3.select(a_obj);
             db = d3.select(b_obj);
 
-            console.log("&&&&&da, db are: ", da, db);
+            // console.log("&&&&&da, db are: ", da, db);
 
 
             
@@ -627,15 +627,15 @@ function relax(d) {
               if (dy_a > dy_b){ //dy_a is lower than dy_b 
                 da = d3.select(a_obj);
                 db = d3.select(b_obj);
-                console.log("A is: "+ JSON.stringify(a_obj.lastChild));
+                // console.log("A is: "+ JSON.stringify(a_obj.lastChild));
 
                 b = $(b_obj).html();
-                console.log("B is: ", b);
+                // console.log("B is: ", b);
 
                 delta_lines.push($(a_obj).html());
                 delta_lines.push($(b_obj).html());
 
-                console.log("delta_lines are: ", delta_lines);
+                // console.log("delta_lines are: ", delta_lines);
                 
                 da.attr("dy", -7);
                 db.attr("dy", 4);
@@ -669,16 +669,16 @@ function relax(d) {
             var dx_a = a[0];
             var dy_a = a[1];
 
-            console.log("!!!!d lines is :", delta_lines);
-            console.log("!!!! a.id, b.id: "+ a.id + " " + b.id);
+            // console.log("!!!!d lines is :", delta_lines);
+            // console.log("!!!! a.id, b.id: "+ a.id + " " + b.id);
             if (a.id == delta_lines[0] && b.id == delta_lines[1]){
                 
-                console.log("HIT a.id, b.id: "+ a.id + " " + b.id);
+                // console.log("HIT a.id, b.id: "+ a.id + " " + b.id);
                 
                 da = d3.select(a_obj);
                 db = d3.select(b_obj);
 
-                console.log("da, db are: ", da, db);
+                // console.log("da, db are: ", da, db);
 
                 da.attr("transform","translate(0,-8)");
                 db.attr("transform","translate(0,6)");

@@ -238,6 +238,11 @@ function reset() {
   for (var i = 0; i < selectedStates.length; i++){
         var id = "#pie" + selectedStates[i];
         d3.selectAll(id).remove();
+        data1[0].value = 0;
+          data1[1].value = 0;
+          data1[2].value = 0;
+          data1[3].value = 0;
+          data1[4].value = 0;
         drawPie(selectedStates[i]);
       }
 
@@ -454,7 +459,7 @@ function drawPie (d){
     //   return d.data.name;
     // });
       
-// Chart labels - still under construction 
+// Chart labels 
   g_pie_slice.append("text")
       .attr("class", "name-text")
       .attr("transform", function(d,i){
@@ -464,7 +469,7 @@ function drawPie (d){
     
   var percent = (d.endAngle - d.startAngle)/(2*Math.PI)*100
        if(percent<3){
-        pos[1] += i*15
+        pos[1] += i*17;
        }
         return "translate("+ pos +")";
       })
@@ -476,17 +481,17 @@ function drawPie (d){
       .attr("fill", "#333")
       .attr("text-anchor", 'left')
       .attr("dx", function(d){
-      var ac = midAngle(d) < Math.PI ? 0:-50
+      var ac = midAngle(d) < Math.PI ? 3:-53
               return ac
       })
-      .attr("dy", 5 )
+      .attr("dy", 0)
       
       
     function midAngle(d) {
       return d.startAngle + (d.endAngle - d.startAngle) / 2;
     }
 
-    relax(d);
+   
 
     var polyline = g_pie.selectAll("polyline")
       .data(pie(data1), function(d) {
@@ -494,7 +499,11 @@ function drawPie (d){
       })
       .enter()
       .append("polyline")
-
+      .attr("class", "title-polyline")
+      .attr("id", function(d) {
+         return d.data.name;
+      })
+      .attr("dy", 5)
       .attr("points", function(d,i) {
         var pos = arc.centroid(d);
           pos[0] = radius * 0.95 * (midAngle(d) < Math.PI ? 1 : -1);
@@ -517,7 +526,7 @@ function drawPie (d){
             return "0px";
           }
         });
-
+    relax(d);
           d3.selectAll(".pie-slice")
             .on("mouseover", function(d) {
               console.log("this is: ", (((this.parentNode).parentNode).parentNode).id);
@@ -562,14 +571,19 @@ function drawPie (d){
 function relax(d) {
     again = false;
     var id = "#pie" + d;
+    var delta_lines = [];
 
     var titles = d3.select(id).selectAll(".name-text");
+    var polylines = d3.select(id).selectAll("polyline");
+     
+    console.log("polylines are", polylines);
 
         titles.each(function (d, i) {
         a_obj = this;
         a = this;
         da = d3.select(a);
         y1 = da.attr("y");
+
 
         a = $(a).attr("transform");
         a = a.split("(");
@@ -579,6 +593,12 @@ function relax(d) {
         titles.each(function (d, j) {
             b = this;
             b_obj = this;
+            da = d3.select(a_obj);
+            db = d3.select(b_obj);
+
+            console.log("&&&&&da, db are: ", da, db);
+
+
             
             // a & b are the same element and don't collide.
             if (a_obj == b_obj) return;
@@ -588,27 +608,85 @@ function relax(d) {
             b = b[1].split(")");
             b = b[0].split(",");
             
+            var dx_a = a[0];
+            var dy_a = a[1];
             var dx_b = b[0];
             var dy_b = b[1];
 
-            var dx_a = a[0];
-            var dy_a = a[1];
+            
+
+            if ((dx_a > 0 && dx_b < 0) || (dx_a < 0 && dx_b > 0)){
+              return;
+            }
 
             deltaY = Math.abs(dy_a - dy_b);
+            // console.log("deltaY btw", a_obj, "and ", b_obj, "is " + deltaY);
 
             if (deltaY < 8) {
 
               if (dy_a > dy_b){ //dy_a is lower than dy_b 
                 da = d3.select(a_obj);
                 db = d3.select(b_obj);
+                console.log("A is: "+ JSON.stringify(a_obj.lastChild));
 
-                da.attr("dy", -2);
-                db.attr("dy", 10);
+                b = $(b_obj).html();
+                console.log("B is: ", b);
+
+                delta_lines.push($(a_obj).html());
+                delta_lines.push($(b_obj).html());
+
+                console.log("delta_lines are: ", delta_lines);
+                
+                da.attr("dy", -7);
+                db.attr("dy", 4);
+
+                
+              }  
+
+            }
+          });
+        });
+        
+        polylines.each(function (d, i) {
+        a_obj = this;
+        a = this;
+        da = d3.select(a);
+        y1 = da.attr("y");
+      
+        // console.log("d in polylines relax is:", a);
+        
+        polylines.each(function (d, j) {
+            b = this;
+            b_obj = this;
+          // console.log("a & b in polylines relax are : ", a, b);
+
+            // a & b are the same element and don't collide.
+            if (a_obj === b_obj){ return;}
+            
+            var dx_b = b[0];
+            var dy_b = b[1];
+
+            var dx_a = a[0];
+            var dy_a = a[1];
+
+            console.log("!!!!d lines is :", delta_lines);
+            console.log("!!!! a.id, b.id: "+ a.id + " " + b.id);
+            if (a.id == delta_lines[0] && b.id == delta_lines[1]){
+                
+                console.log("HIT a.id, b.id: "+ a.id + " " + b.id);
+                
+                da = d3.select(a_obj);
+                db = d3.select(b_obj);
+
+                console.log("da, db are: ", da, db);
+
+                da.attr("transform","translate(0,-8)");
+                db.attr("transform","translate(0,6)");
 
                 return;
               }  
 
-            }
+            
           });
         });
 }
